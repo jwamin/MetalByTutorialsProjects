@@ -11,6 +11,9 @@
 		3DC222B921AF31D600A50060 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B821AF31D600A50060 /* ViewController.swift */; };
 		3DC222BB21AF31D600A50060 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC222BA21AF31D600A50060 /* Assets.xcassets */; };
 		3DC222BE21AF31D700A50060 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC222BC21AF31D700A50060 /* Main.storyboard */; };
+		3DC222C721AF324200A50060 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C621AF324200A50060 /* Renderer.swift */; };
+		3DC222C921AF349A00A50060 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
+		3DC222CB21AF388700A50060 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222CA21AF388700A50060 /* Shaders.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,9 @@
 		3DC222BD21AF31D700A50060 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3DC222BF21AF31D700A50060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DC222C021AF31D700A50060 /* MetalTemplate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalTemplate.entitlements; sourceTree = "<group>"; };
+		3DC222C621AF324200A50060 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		3DC222C821AF349A00A50060 /* Primitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primitive.swift; sourceTree = "<group>"; };
+		3DC222CA21AF388700A50060 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,9 @@
 			children = (
 				3DC222B621AF31D600A50060 /* AppDelegate.swift */,
 				3DC222B821AF31D600A50060 /* ViewController.swift */,
+				3DC222C821AF349A00A50060 /* Primitive.swift */,
+				3DC222C621AF324200A50060 /* Renderer.swift */,
+				3DC222CA21AF388700A50060 /* Shaders.metal */,
 				3DC222BA21AF31D600A50060 /* Assets.xcassets */,
 				3DC222BC21AF31D700A50060 /* Main.storyboard */,
 				3DC222BF21AF31D700A50060 /* Info.plist */,
@@ -134,7 +143,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC222B921AF31D600A50060 /* ViewController.swift in Sources */,
+				3DC222C721AF324200A50060 /* Renderer.swift in Sources */,
 				3DC222B721AF31D600A50060 /* AppDelegate.swift in Sources */,
+				3DC222C921AF349A00A50060 /* Primitive.swift in Sources */,
+				3DC222CB21AF388700A50060 /* Shaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
