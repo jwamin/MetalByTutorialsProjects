@@ -44,7 +44,6 @@ class ViewController: NSViewController {
     }
 
     @IBAction func drawTriangles(_ sender: Any) {
-        print(sender)
         if(sender is NSSegmentedControl){
             let button = (sender as! NSSegmentedControl)
             triangles = button.selectedSegment
