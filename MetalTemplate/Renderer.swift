@@ -130,7 +130,7 @@ extension Renderer:MTKViewDelegate{
                renderEncoder.setFragmentBytes(&magenta, length: MemoryLayout<float4>.stride, index: 0)
         for submesh in mesh.submeshes{
             
-            print(submesh.indexCount,submesh.indexType,submesh.indexBuffer.buffer,submesh.indexBuffer.offset)
+            //print(submesh.indexCount,submesh.indexType,submesh.indexBuffer.buffer,submesh.indexBuffer.offset)
             
             renderEncoder.drawIndexedPrimitives(type: ((drawTriangles) ? .triangle : .point), indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
             

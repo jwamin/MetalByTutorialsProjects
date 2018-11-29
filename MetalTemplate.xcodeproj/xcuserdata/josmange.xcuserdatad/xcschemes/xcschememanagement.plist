@@ -4,20 +4,28 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Matrices.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-		<key>MetalTemplate.xcscheme</key>
+		<key>ModelIOWavefrontOBJ.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>ScaleRotate.xcscheme</key>
+		<key>ScaleRotateMatrix.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>TranslateMatrix.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3D6A246321B03F0100F054E5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

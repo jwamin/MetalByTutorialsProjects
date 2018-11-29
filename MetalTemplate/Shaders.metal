@@ -7,6 +7,7 @@
 //
 
 #include <metal_stdlib>
+#include "Common.h"
 using namespace metal;
 
 struct VertexIn {
@@ -16,10 +17,6 @@ struct VertexIn {
 struct VertexOut {
     float4 position [[ position ]];
     float point_size [[ point_size ]];
-};
-
-struct Constants{
-    float animateBy;
 };
 
 vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant Constants &constants [[ buffer(1) ]] ) {
