@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/jwamin/Documents/sandbox.nosync/github/macos/MetalByTutorialsProjects/MetalTemplate/Constants.swift">
+   </FileRef>
+   <FileRef
       location = "group:/Users/jwamin/Documents/sandbox.nosync/github/macos/MetalByTutorialsProjects/MetalTemplate/choo-choo.obj">
    </FileRef>
    <FileRef

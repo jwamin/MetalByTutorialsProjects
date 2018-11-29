@@ -18,7 +18,8 @@ class Renderer:NSObject{
     var mdlMesh:MDLMesh!
     var vertexBuffer:MTLBuffer!
     var pipelineState:MTLRenderPipelineState!
-    
+    var time:Float = 0
+    var constants = Constants()
     init(metalView:MTKView){
         
         guard let device = MTLCreateSystemDefaultDevice() else {
@@ -99,10 +100,15 @@ extension Renderer:MTKViewDelegate{
                 return
         }
         
+        let deltaTime = 1 / Float(view.preferredFramesPerSecond)
+        time += deltaTime
+        let animateBy = abs(sin(time)/2 + 0.5)
+        constants.animateBy = animateBy
+        
         renderEncoder.setRenderPipelineState(pipelineState)
         renderEncoder.setTriangleFillMode(.lines)
         renderEncoder.setVertexBuffer(mesh.vertexBuffers[0].buffer, offset: 0, index: 0)
-        
+        renderEncoder.setVertexBytes(&constants, length: MemoryLayout<Constants>.stride, index: 1)
         for submesh in mesh.submeshes{
             
             print(submesh.indexCount,submesh.indexType,submesh.indexBuffer.buffer,submesh.indexBuffer.offset)

@@ -13,8 +13,14 @@ struct VertexIn {
     float4 position [[ attribute(0) ]];
 };
 
-vertex float4 vertex_main(const VertexIn vertex_in [[ stage_in ]]) {
-    return vertex_in.position;
+struct Constants{
+    float animateBy;
+};
+
+vertex float4 vertex_main(const VertexIn vertex_in [[ stage_in ]], constant Constants &constants [[ buffer(1) ]] ) {
+    float4 position = vertex_in.position;
+    position.x += constants.animateBy;
+    return position;
 }
 
 fragment float4 fragment_main() {

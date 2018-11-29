@@ -15,6 +15,7 @@
 		3DC222C921AF349A00A50060 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
 		3DC222CB21AF388700A50060 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222CA21AF388700A50060 /* Shaders.metal */; };
 		57DA0F8B21AF64D300A74ACD /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
+		57DA0F8F21B00BB300A74ACD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DA0F8E21B00BB300A74ACD /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		3DC222C821AF349A00A50060 /* Primitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primitive.swift; sourceTree = "<group>"; };
 		3DC222CA21AF388700A50060 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		57DA0F8A21AF641A00A74ACD /* choo-choo.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = "choo-choo.obj"; path = "/Users/jwamin/Documents/sandbox.nosync/github/macos/MetalByTutorialsProjects/MetalTemplate/choo-choo.obj"; sourceTree = "<absolute>"; };
+		57DA0F8E21B00BB300A74ACD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = /Users/jwamin/Documents/sandbox.nosync/github/macos/MetalByTutorialsProjects/MetalTemplate/Constants.swift; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		3DC222B521AF31D600A50060 /* MetalTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				57DA0F8E21B00BB300A74ACD /* Constants.swift */,
 				57DA0F8A21AF641A00A74ACD /* choo-choo.obj */,
 				3DC222B621AF31D600A50060 /* AppDelegate.swift */,
 				3DC222B821AF31D600A50060 /* ViewController.swift */,
@@ -151,6 +154,7 @@
 				3DC222B721AF31D600A50060 /* AppDelegate.swift in Sources */,
 				3DC222C921AF349A00A50060 /* Primitive.swift in Sources */,
 				3DC222CB21AF388700A50060 /* Shaders.metal in Sources */,
+				57DA0F8F21B00BB300A74ACD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
