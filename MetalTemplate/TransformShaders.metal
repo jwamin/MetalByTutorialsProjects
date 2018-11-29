@@ -1,8 +1,8 @@
 //
-//  Shaders.metal
-//  MetalTemplate
+//  TransformShaders.metal
+//  Matrices
 //
-//  Created by Joss Manger on 11/28/18.
+//  Created by Joss Manger on 11/29/18.
 //  Copyright © 2018 Joss Manger. All rights reserved.
 //
 
@@ -26,6 +26,7 @@ vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant C
     
     VertexOut vertex_out;
     vertex_out.position = vertex_in.position;
+    
     vertex_out.position.x += constants.animateBy;
     
     vertex_out.point_size = 5.0;
