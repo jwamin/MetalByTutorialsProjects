@@ -15,7 +15,7 @@ class ViewController: NSViewController {
     
     
     @IBOutlet weak var button: NSButton!
-    var triangles:Int = 0 {
+    var triangles:Bool = true {
         didSet{
             renderer.setTriangles(drawTriangles: triangles)
         }
@@ -47,7 +47,7 @@ class ViewController: NSViewController {
         print(sender)
         if(sender is NSButton){
             let button = (sender as! NSButton)
-            triangles = button.state.rawValue
+            triangles = Bool(truncating: button.state.rawValue as NSNumber)
         }
     }
     
