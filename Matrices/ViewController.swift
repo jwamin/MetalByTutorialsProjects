@@ -45,9 +45,9 @@ class ViewController: NSViewController {
 
     @IBAction func drawTriangles(_ sender: Any) {
         print(sender)
-        if(sender is NSButton){
-            let button = (sender as! NSButton)
-            triangles = button.state.rawValue
+        if(sender is NSSegmentedControl){
+            let button = (sender as! NSSegmentedControl)
+            triangles = button.selectedSegment
         }
     }
     

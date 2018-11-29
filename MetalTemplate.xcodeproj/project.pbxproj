@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		3D6A247421B03F2B00F054E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DA0F8E21B00BB300A74ACD /* Constants.swift */; };
 		3D6A247521B03F3100F054E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B621AF31D600A50060 /* AppDelegate.swift */; };
-		3D6A247621B03F3400F054E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B821AF31D600A50060 /* ViewController.swift */; };
 		3D6A247721B03F3700F054E5 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
 		3D6A247921B03F4500F054E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC222BC21AF31D700A50060 /* Main.storyboard */; };
 		3D6A247B21B03F6600F054E5 /* RendererVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A247A21B03F6600F054E5 /* RendererVertex.swift */; };
 		3D6A247C21B03F7900F054E5 /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
 		3D6A247E21B040EC00F054E5 /* TransformShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A247D21B040EC00F054E5 /* TransformShaders.metal */; };
 		3D6A248421B043B300F054E5 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A248221B043B300F054E5 /* Main2.storyboard */; };
+		3D6A248621B0649000F054E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A248521B0649000F054E5 /* ViewController.swift */; };
 		3DC222B721AF31D600A50060 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B621AF31D600A50060 /* AppDelegate.swift */; };
 		3DC222B921AF31D600A50060 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B821AF31D600A50060 /* ViewController.swift */; };
 		3DC222BB21AF31D600A50060 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DC222BA21AF31D600A50060 /* Assets.xcassets */; };
@@ -34,6 +34,7 @@
 		3D6A247A21B03F6600F054E5 /* RendererVertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RendererVertex.swift; sourceTree = "<group>"; };
 		3D6A247D21B040EC00F054E5 /* TransformShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = TransformShaders.metal; sourceTree = "<group>"; };
 		3D6A248321B043B300F054E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main2.storyboard; sourceTree = "<group>"; };
+		3D6A248521B0649000F054E5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3DC222B321AF31D600A50060 /* MetalTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC222B621AF31D600A50060 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DC222B821AF31D600A50060 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +70,8 @@
 		3D6A246521B03F0100F054E5 /* Matrices */ = {
 			isa = PBXGroup;
 			children = (
+				3D6A248521B0649000F054E5 /* ViewController.swift */,
+				3D6A247D21B040EC00F054E5 /* TransformShaders.metal */,
 				3D6A247A21B03F6600F054E5 /* RendererVertex.swift */,
 				3D6A248221B043B300F054E5 /* Main2.storyboard */,
 				3D6A246F21B03F0300F054E5 /* Info.plist */,
@@ -105,7 +108,6 @@
 				3DC222C821AF349A00A50060 /* Primitive.swift */,
 				3DC222C621AF324200A50060 /* Renderer.swift */,
 				3DC222CA21AF388700A50060 /* Shaders.metal */,
-				3D6A247D21B040EC00F054E5 /* TransformShaders.metal */,
 				3DC222BA21AF31D600A50060 /* Assets.xcassets */,
 				3DC222BC21AF31D700A50060 /* Main.storyboard */,
 				3DC222BF21AF31D700A50060 /* Info.plist */,
@@ -216,10 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D6A247621B03F3400F054E5 /* ViewController.swift in Sources */,
 				3D6A247521B03F3100F054E5 /* AppDelegate.swift in Sources */,
 				3D6A247E21B040EC00F054E5 /* TransformShaders.metal in Sources */,
 				3D6A247B21B03F6600F054E5 /* RendererVertex.swift in Sources */,
+				3D6A248621B0649000F054E5 /* ViewController.swift in Sources */,
 				3D6A247421B03F2B00F054E5 /* Constants.swift in Sources */,
 				3D6A247721B03F3700F054E5 /* Primitive.swift in Sources */,
 			);

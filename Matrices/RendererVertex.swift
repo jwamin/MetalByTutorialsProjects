@@ -18,7 +18,7 @@ class Renderer:NSObject{
     var vertexBuffer:MTLBuffer!
     var pipelineState:MTLRenderPipelineState!
     
-    private var drawTriangles:Bool = false
+    private var drawTriangles:Int = 0
     
     //animation related instance variables
     var time:Float = 0
@@ -28,11 +28,19 @@ class Renderer:NSObject{
     var yellow:float4 = float4(1, 1, 0, 1);
     var cyan:float4 = float4(0, 1, 1, 1);
     
-    var vertices = [float3(-0.3, 0.4, 0.5)]
+    var vertices: [float3] = [
+        [-0.7, 0.8, 1],
+        [-0.7,-0.4, 1],
+        [ 0.5, 0.5, 1]
+    ]
     
     var originalBuffer:MTLBuffer!
     var transformedBuffer:MTLBuffer!
     var transformedBuffer2:MTLBuffer!
+    
+    var matrix:float4x4!
+    var transformMatrix:float4x4!
+    var tm3:float4x4!
     
     init(metalView:MTKView){
         
@@ -67,17 +75,18 @@ class Renderer:NSObject{
         //get pixel format from view
         pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
         
-        originalBuffer = device.makeBuffer(bytes: &vertices, length: MemoryLayout<float3>.stride, options: [])
+        //a little on-CPU matrix maths...
         
-        vertices[0].x += 0.3
-        vertices[0].y -= 0.4
-        transformedBuffer = device.makeBuffer(bytes: &vertices, length: MemoryLayout<float3>.stride, options: [])
+        var multiplier = matrix_identity_float4x4
+        multiplier.columns.3 = [0.3,-0.6,0,1]
         
+        matrix = matrix_identity_float4x4
+        matrix.columns.3 = [-0.3,0.2,0,1]
+
+        transformMatrix = matrix * multiplier
+        tm3 = transformMatrix * multiplier
         
-        vertices[0].x += 0.3
-        vertices[0].y -= 0.4
-        transformedBuffer2 = device.makeBuffer(bytes: &vertices, length: MemoryLayout<float3>.stride, options: [])
-        
+        originalBuffer = device.makeBuffer(bytes: &vertices, length: MemoryLayout<float3>.stride * vertices.count, options: [])
         
         //compine all into pipeline state which will be used by draw function
         do{
@@ -94,7 +103,7 @@ class Renderer:NSObject{
         
         //assign metalkitview delegate to self, which starts the draw loop
         metalView.delegate = self
-        print("initialised",Renderer.device)
+        print("initialised",Renderer.device, vertices.count)
         
     }
 }
@@ -121,29 +130,47 @@ extension Renderer:MTKViewDelegate{
         
         renderEncoder.setRenderPipelineState(pipelineState)
         
-        if(drawTriangles){
-            renderEncoder.setTriangleFillMode(.lines)
-        }
+       
         
-        guard let originalBuffer = originalBuffer,let transformedBuffer = transformedBuffer, let transformedlBuffer2 = transformedBuffer2 else {
+        
+        
+        guard let originalBuffer = originalBuffer else {
             fatalError()
         }
         
+        var draw:MTLPrimitiveType = .point
+        switch drawTriangles {
+        case 1:
+            draw = .triangle
+            renderEncoder.setTriangleFillMode(.lines)
+        case 2:
+            draw = .triangle
+        default:
+            draw = .point
+        }
+        
+        
         renderEncoder.setVertexBuffer(originalBuffer, offset: 0, index: 0)
         renderEncoder.setVertexBytes(&constants, length: MemoryLayout<Constants>.stride, index: 1)
-        renderEncoder.setFragmentBytes(&magenta, length: MemoryLayout<float4>.stride, index: 0)
-        renderEncoder.drawPrimitives(type: ((drawTriangles) ? .triangle : .point), vertexStart: 0, vertexCount: vertices.count)
+        renderEncoder.setVertexBytes(&matrix, length: MemoryLayout<float4x4>.stride, index: 2)
         
-        renderEncoder.setVertexBuffer(transformedBuffer, offset: 0, index: 0)
+        renderEncoder.setFragmentBytes(&magenta, length: MemoryLayout<float4>.stride, index: 0)
+        renderEncoder.drawPrimitives(type: draw, vertexStart: 0, vertexCount: vertices.count)
+        
+        renderEncoder.setVertexBuffer(originalBuffer, offset: 0, index: 0)
         renderEncoder.setVertexBytes(&constants, length: MemoryLayout<Constants>.stride, index: 1)
+        renderEncoder.setVertexBytes(&transformMatrix, length: MemoryLayout<float4x4>.stride, index: 2)
+        
         renderEncoder.setFragmentBytes(&yellow, length: MemoryLayout<float4>.stride, index: 0)
-        renderEncoder.drawPrimitives(type: ((drawTriangles) ? .triangle : .point), vertexStart: 0, vertexCount: vertices.count)
-
-        renderEncoder.setVertexBuffer(transformedlBuffer2, offset: 0, index: 0)
+        renderEncoder.drawPrimitives(type: draw, vertexStart: 0, vertexCount: vertices.count)
+//
+        renderEncoder.setVertexBuffer(originalBuffer, offset: 0, index: 0)
         renderEncoder.setVertexBytes(&constants, length: MemoryLayout<Constants>.stride, index: 1)
+        renderEncoder.setVertexBytes(&tm3, length: MemoryLayout<float4x4>.stride, index: 2)
+        
         renderEncoder.setFragmentBytes(&cyan, length: MemoryLayout<float4>.stride, index: 0)
-        renderEncoder.drawPrimitives(type: ((drawTriangles) ? .triangle : .point), vertexStart: 0, vertexCount: vertices.count)
- 
+        renderEncoder.drawPrimitives(type: draw, vertexStart: 0, vertexCount: vertices.count)
+ //((drawTriangles) ? .triangle : .point)
         
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {
@@ -158,7 +185,7 @@ extension Renderer:MTKViewDelegate{
 
 
 extension Renderer {
-    func setTriangles(drawTriangles:Bool){
+    func setTriangles(drawTriangles:Int){
         self.drawTriangles = drawTriangles
     }
 }

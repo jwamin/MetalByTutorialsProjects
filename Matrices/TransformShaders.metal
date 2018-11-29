@@ -22,10 +22,12 @@ struct Constants{
     float animateBy;
 };
 
-vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant Constants &constants [[ buffer(1) ]] ) {
+vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant Constants &constants [[ buffer(1) ]], constant float4x4 &matrix [[ buffer(2) ]] ) {
     
     VertexOut vertex_out;
     vertex_out.position = vertex_in.position;
+    
+    vertex_out.position = matrix * float4(vertex_out.position);
     
     vertex_out.position.x += constants.animateBy;
     
