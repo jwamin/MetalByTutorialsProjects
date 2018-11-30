@@ -22,6 +22,8 @@ struct VertexOut {
 vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant Uniforms &uniforms [[buffer(1)]]) {
     
     VertexOut vertex_out;
+    
+    // translate vertex position THEN object/model space THEN camera/view space THEN clip space
     vertex_out.position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * vertex_in.position;
     
     vertex_out.point_size = 5.0;

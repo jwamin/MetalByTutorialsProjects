@@ -63,7 +63,7 @@ class Renderer:NSObject{
         //cast to metal mesh
         do {
             mesh = try MTKMesh(mesh: mdlMesh, device: device)} catch {
-            print("error casting to metal mesh")
+                print("error casting to metal mesh")
         }
         
         //Generate pipeline descriptor, there is no need to save access to the library, simply parse the metal shaders and assign the functions to the pipeline Descriptor
@@ -106,7 +106,7 @@ class Renderer:NSObject{
         
         uniforms.viewMatrix = float4x4(translation: [0.8,0,0]).inverse
         
-       mtkView(metalView, drawableSizeWillChange: metalView.bounds.size)
+        mtkView(metalView, drawableSizeWillChange: metalView.bounds.size)
         
     }
 }
@@ -122,6 +122,8 @@ extension Renderer:MTKViewDelegate{
         uniforms.projectionMatrix = projectionMatrix
     }
     
+    
+    
     func draw(in view: MTKView) {
         
         guard let descriptor = view.currentRenderPassDescriptor,
@@ -130,24 +132,55 @@ extension Renderer:MTKViewDelegate{
                 return
         }
         
+        let floatFrames = Float(view.preferredFramesPerSecond);
         
+        time += (1 / floatFrames)
+        
+        var uniformsInternal = Uniforms()
+        //        matrix_float4x4 modelMatrix;
+        //        matrix_float4x4 viewMatrix;
+        //        matrix_float4x4 projectionMatrix;
+        switch time {
+        case let curr where curr < 2:
+            uniformsInternal.modelMatrix = float4x4.identity()
+            uniformsInternal.viewMatrix = float4x4.identity()
+            uniformsInternal.projectionMatrix = float4x4.identity()
+        case let curr where curr < 4:
+            uniformsInternal.modelMatrix = uniforms.modelMatrix
+            uniformsInternal.viewMatrix = float4x4.identity()
+            uniformsInternal.projectionMatrix = float4x4.identity()
+        case let curr where curr < 6:
+            uniformsInternal.modelMatrix = uniforms.modelMatrix
+            uniformsInternal.viewMatrix = uniforms.viewMatrix
+            uniformsInternal.projectionMatrix = float4x4.identity()
+        case let curr where curr < 10:
+            uniformsInternal.modelMatrix = uniforms.modelMatrix
+            uniformsInternal.viewMatrix = uniforms.viewMatrix
+            uniformsInternal.projectionMatrix = uniforms.projectionMatrix
+        default:
+            print("eh?")
+        }
         
         renderEncoder.setRenderPipelineState(pipelineState)
         
         if(drawTriangles){
-          //  renderEncoder.setTriangleFillMode(.lines)
+            //  renderEncoder.setTriangleFillMode(.lines)
         }
         
         renderEncoder.setVertexBuffer(mesh.vertexBuffers[0].buffer, offset: 0, index: 0)
-       
-//        let delta = 1.0 / Float(view.preferredFramesPerSecond)
-//        time += delta
-//        uniforms.viewMatrix = float4x4.identity()
-//        uniforms.modelMatrix = float4x4(rotationY: sin(time))
-
+        
+        //        let delta = 1.0 / Float(view.preferredFramesPerSecond)
+        //        time += delta
+        //        uniforms.viewMatrix = float4x4.identity()
+        //        uniforms.modelMatrix = float4x4(rotationY: sin(time))
+        
+        
+        
+        
+        
         uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse
         
-        renderEncoder.setVertexBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
+        renderEncoder.setVertexBytes(&uniformsInternal, length: MemoryLayout<Uniforms>.stride, index: 1)
         
         renderEncoder.setFragmentBytes(&magenta, length: MemoryLayout<float4>.stride, index: 0)
         
@@ -157,7 +190,7 @@ extension Renderer:MTKViewDelegate{
             
         }
         
- 
+        
         
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {
@@ -166,6 +199,10 @@ extension Renderer:MTKViewDelegate{
         
         commandBuffer.present(drawable)
         commandBuffer.commit()
+        
+        if(time>=10){
+            time = 0
+        }
         
     }
 }
