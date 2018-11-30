@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D6A248A21B06FB100F054E5"
-               BuildableName = "ScaleRotateMatrix.app"
-               BlueprintName = "ScaleRotateMatrix"
-               ReferencedContainer = "container:MetalTemplate.xcodeproj">
+               BlueprintIdentifier = "3D6A246321B03F0100F054E5"
+               BuildableName = "TranslateMatrix.app"
+               BlueprintName = "TranslateMatrix"
+               ReferencedContainer = "container:MetalSandbox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D6A248A21B06FB100F054E5"
-            BuildableName = "ScaleRotateMatrix.app"
-            BlueprintName = "ScaleRotateMatrix"
-            ReferencedContainer = "container:MetalTemplate.xcodeproj">
+            BlueprintIdentifier = "3D6A246321B03F0100F054E5"
+            BuildableName = "TranslateMatrix.app"
+            BlueprintName = "TranslateMatrix"
+            ReferencedContainer = "container:MetalSandbox.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D6A248A21B06FB100F054E5"
-            BuildableName = "ScaleRotateMatrix.app"
-            BlueprintName = "ScaleRotateMatrix"
-            ReferencedContainer = "container:MetalTemplate.xcodeproj">
+            BlueprintIdentifier = "3D6A246321B03F0100F054E5"
+            BuildableName = "TranslateMatrix.app"
+            BlueprintName = "TranslateMatrix"
+            ReferencedContainer = "container:MetalSandbox.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D6A248A21B06FB100F054E5"
-            BuildableName = "ScaleRotateMatrix.app"
-            BlueprintName = "ScaleRotateMatrix"
-            ReferencedContainer = "container:MetalTemplate.xcodeproj">
+            BlueprintIdentifier = "3D6A246321B03F0100F054E5"
+            BuildableName = "TranslateMatrix.app"
+            BlueprintName = "TranslateMatrix"
+            ReferencedContainer = "container:MetalSandbox.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

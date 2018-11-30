@@ -88,6 +88,7 @@
 		3DC222C821AF349A00A50060 /* Primitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primitive.swift; sourceTree = "<group>"; };
 		3DC222CA21AF388700A50060 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		3DECAC5B21B19FE4007D429C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3DECAC5D21B1A4C6007D429C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		57DA0F8A21AF641A00A74ACD /* choo-choo.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = "choo-choo.obj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +182,7 @@
 		3DC222AA21AF31D600A50060 = {
 			isa = PBXGroup;
 			children = (
+				3DECAC5D21B1A4C6007D429C /* README.md */,
 				3D6A24A321B0977100F054E5 /* Common.h */,
 				3DA6DCE921B1872400E1131B /* MathLibrary.swift */,
 				3DC222B521AF31D600A50060 /* MetalTemplate */,
@@ -336,7 +338,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3DC222AE21AF31D600A50060 /* Build configuration list for PBXProject "MetalTemplate" */;
+			buildConfigurationList = 3DC222AE21AF31D600A50060 /* Build configuration list for PBXProject "MetalSandbox" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -863,7 +865,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3DC222AE21AF31D600A50060 /* Build configuration list for PBXProject "MetalTemplate" */ = {
+		3DC222AE21AF31D600A50060 /* Build configuration list for PBXProject "MetalSandbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3DC222C121AF31D700A50060 /* Debug */,
