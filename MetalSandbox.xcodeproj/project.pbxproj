@@ -48,8 +48,21 @@
 		3DC222CB21AF388700A50060 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222CA21AF388700A50060 /* Shaders.metal */; };
 		3DECAC5A21B19E9A007D429C /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
 		3DECAC5C21B19FE4007D429C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DECAC5B21B19FE4007D429C /* Assets.xcassets */; };
+		3DECAC6521B1B830007D429C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECAC6421B1B830007D429C /* main.swift */; };
 		57DA0F8B21AF64D300A74ACD /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3DECAC6021B1B830007D429C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3D6A246421B03F0100F054E5 /* TranslateMatrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranslateMatrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +102,8 @@
 		3DC222CA21AF388700A50060 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		3DECAC5B21B19FE4007D429C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DECAC5D21B1A4C6007D429C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3DECAC6221B1B830007D429C /* ModelIOFactory */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ModelIOFactory; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DECAC6421B1B830007D429C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		57DA0F8A21AF641A00A74ACD /* choo-choo.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = "choo-choo.obj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +137,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3DC222B021AF31D600A50060 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DECAC5F21B1B830007D429C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -190,6 +212,7 @@
 				3D6A248C21B06FB100F054E5 /* ScaleRotate */,
 				3DA6DCD121B1859800E1131B /* Projection */,
 				3DA6DCF321B193E600E1131B /* HypeTrain */,
+				3DECAC6321B1B830007D429C /* ModelIOFactory */,
 				3DC222B421AF31D600A50060 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -202,6 +225,7 @@
 				3D6A248B21B06FB100F054E5 /* ScaleRotateMatrix.app */,
 				3DA6DCD021B1859800E1131B /* Projection.app */,
 				3DA6DCF221B193E600E1131B /* HypeTrain.app */,
+				3DECAC6221B1B830007D429C /* ModelIOFactory */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,6 +245,14 @@
 				3DC222C021AF31D700A50060 /* MetalTemplate.entitlements */,
 			);
 			path = MetalTemplate;
+			sourceTree = "<group>";
+		};
+		3DECAC6321B1B830007D429C /* ModelIOFactory */ = {
+			isa = PBXGroup;
+			children = (
+				3DECAC6421B1B830007D429C /* main.swift */,
+			);
+			path = ModelIOFactory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,13 +343,30 @@
 			productReference = 3DC222B321AF31D600A50060 /* WavefrontOBJModelIO.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3DECAC6121B1B830007D429C /* ModelIOFactory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DECAC6621B1B830007D429C /* Build configuration list for PBXNativeTarget "ModelIOFactory" */;
+			buildPhases = (
+				3DECAC5E21B1B830007D429C /* Sources */,
+				3DECAC5F21B1B830007D429C /* Frameworks */,
+				3DECAC6021B1B830007D429C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ModelIOFactory;
+			productName = ModelIOFactory;
+			productReference = 3DECAC6221B1B830007D429C /* ModelIOFactory */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3DC222AB21AF31D600A50060 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Joss Manger";
 				TargetAttributes = {
@@ -335,6 +384,9 @@
 					};
 					3DC222B221AF31D600A50060 = {
 						CreatedOnToolsVersion = 10.0;
+					};
+					3DECAC6121B1B830007D429C = {
+						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -356,6 +408,7 @@
 				3D6A248A21B06FB100F054E5 /* ScaleRotateMatrix */,
 				3DA6DCCF21B1859800E1131B /* Projection */,
 				3DA6DCF121B193E600E1131B /* HypeTrain */,
+				3DECAC6121B1B830007D429C /* ModelIOFactory */,
 			);
 		};
 /* End PBXProject section */
@@ -473,6 +526,14 @@
 				3DC222C921AF349A00A50060 /* Primitive.swift in Sources */,
 				3DC222CB21AF388700A50060 /* Shaders.metal in Sources */,
 				3DA6DCEA21B1872400E1131B /* MathLibrary.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DECAC5E21B1B830007D429C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DECAC6521B1B830007D429C /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,6 +887,26 @@
 			};
 			name = Release;
 		};
+		3DECAC6721B1B830007D429C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3C42F7N9CQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		3DECAC6821B1B830007D429C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3C42F7N9CQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -879,6 +960,15 @@
 			buildConfigurations = (
 				3DC222C421AF31D700A50060 /* Debug */,
 				3DC222C521AF31D700A50060 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DECAC6621B1B830007D429C /* Build configuration list for PBXNativeTarget "ModelIOFactory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DECAC6721B1B830007D429C /* Debug */,
+				3DECAC6821B1B830007D429C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
