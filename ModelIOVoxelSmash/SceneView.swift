@@ -89,7 +89,12 @@ class SceneKitRenderer : NSObject{
                 if childNode.physicsBody == nil{
                     childNode.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                 }
-                childNode.physicsBody?.applyForce(SCNVector3(2,2,0), at: parentNode.position, asImpulse: true)
+                let range:Range<Float> = Range(uncheckedBounds: (-1.0,1.0))
+                let randomZ = CGFloat(Float.random(in: range))
+                let randomX = CGFloat(Float.random(in: range))
+                let forceVector = SCNVector3(randomX,2,randomZ)
+                print(forceVector)
+                childNode.physicsBody?.applyForce(forceVector, at: parentNode.position, asImpulse: true)
             }
             
         }
