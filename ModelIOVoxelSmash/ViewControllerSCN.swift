@@ -9,8 +9,9 @@
 import Cocoa
 import SceneKit
 
-class ViewController: NSViewController {
+class ViewControllerSCN: NSViewController {
 
+    @IBOutlet weak var button: NSButton!
     var scnRenderer:SceneKitRenderer!
     private var clicks = 0
     override func viewDidLoad() {
@@ -27,11 +28,23 @@ class ViewController: NSViewController {
         }
     }
 
-    override func mouseDown(with event: NSEvent) {
+    @IBAction func applyForce(_ sender: Any) {
+        scnRenderer.applyForce()
+    }
+    @IBAction func buttonAction(_ sender: Any) {
         clicks += 1
-        print("mouse click",clicks)
+        switch clicks {
+        case 1:
+            button.title = "Apply Physics"
+        case 2:
+            button.title = "Reset"
+        default:
+            clicks = 0
+            button.title = "Generate Mesh"
+        }
         scnRenderer.initialiseMesh()
     }
+   
 
 }
 
