@@ -734,6 +734,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="applyForcesButton" destination="iBp-tA-e0S" id="h9a-UF-NMC"/>
                         <outlet property="button" destination="NS5-xa-5uV" id="ElB-Jd-hEX"/>
                     </connections>
                 </viewController>

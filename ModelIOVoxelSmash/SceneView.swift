@@ -67,23 +67,10 @@ class SceneKitRenderer : NSObject{
     
     
     func applyForce(){
-        //force apply
-//        if let forcenode = parentNode.childNode(withName: "forceNode", recursively: false){
-//            forcenode.physicsBody?.applyForce(SCNVector3(10,10,10), at:forcenode.position, asImpulse: true)
-//        } else {
-//
-//            let node = SCNNode()
-//            let geo = SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0)
-//            geo.firstMaterial?.diffuse.contents = NSColor.red.cgColor
-//            node.geometry = geo
-//            node.name = "forceNode"
-//            node.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
-//            parentNode.addChildNode(node)
-//            node.physicsBody?.applyForce(SCNVector3(10,10,10), at: node.position, asImpulse: true)
-//
-//        }
         
-        
+        //send individual children of parentNode (voxel nodes) in upwards and random amounts of -1/1 in z and z axis
+        if(voxelsLoaded){
+            physicsApplied = true
         if let parent = parentNode{
             for childNode in parent.childNodes{
                 if childNode.physicsBody == nil{
@@ -92,13 +79,13 @@ class SceneKitRenderer : NSObject{
                 let range:Range<Float> = Range(uncheckedBounds: (-1.0,1.0))
                 let randomZ = CGFloat(Float.random(in: range))
                 let randomX = CGFloat(Float.random(in: range))
-                let forceVector = SCNVector3(randomX,2,randomZ)
+                let forceVector = SCNVector3(randomX,1,randomZ)
                 print(forceVector)
                 childNode.physicsBody?.applyForce(forceVector, at: parentNode.position, asImpulse: true)
             }
             
         }
-        
+        }
     }
     
     func initialiseMesh(){
@@ -112,9 +99,9 @@ class SceneKitRenderer : NSObject{
         
 
         
-        let divisions = 15
+            let divisions:Int32 = 10
             
-        let voxelArray = MDLVoxelArray(asset:asset, divisions: 10, interiorShells: 1, exteriorShells: 1, patchRadius: 0)
+        let voxelArray = MDLVoxelArray(asset:asset, divisions: divisions, interiorShells: 0, exteriorShells: 0, patchRadius: 0)
         
         let voxelIndices = voxelArray.voxelIndices()
         if let data = voxelIndices {data.withUnsafeBytes( { (voxels:UnsafePointer<MDLVoxelIndex>) -> Void in
@@ -127,12 +114,14 @@ class SceneKitRenderer : NSObject{
                 let node = SCNNode(geometry: box)
                 
                 switch(voxels[voxelIndex].w){
+                case 1:
+                    box.firstMaterial?.diffuse.contents = NSColor.blue.cgColor
                 case 0:
                     box.firstMaterial?.diffuse.contents = NSColor.red.cgColor
                 case -1:
                     box.firstMaterial?.diffuse.contents = NSColor.green.cgColor
                 default:
-                    box.firstMaterial?.diffuse.contents = NSColor.blue.cgColor
+                    
                     break;
                 }
                 

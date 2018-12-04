@@ -146,10 +146,7 @@ extension Renderer:MTKViewDelegate{
         
         renderEncoder.setRenderPipelineState(pipelineState)
         
-       
-        
-        
-        
+
         guard let originalBuffer = originalBuffer else {
             fatalError()
         }
@@ -179,14 +176,14 @@ extension Renderer:MTKViewDelegate{
         
         renderEncoder.setFragmentBytes(&yellow, length: MemoryLayout<float4>.stride, index: 0)
         renderEncoder.drawPrimitives(type: draw, vertexStart: 0, vertexCount: vertices.count)
-//
+
         renderEncoder.setVertexBuffer(originalBuffer, offset: 0, index: 0)
         renderEncoder.setVertexBytes(&constants, length: MemoryLayout<Constants>.stride, index: 1)
         renderEncoder.setVertexBytes(&tm3, length: MemoryLayout<float4x4>.stride, index: 2)
         
         renderEncoder.setFragmentBytes(&cyan, length: MemoryLayout<float4>.stride, index: 0)
         renderEncoder.drawPrimitives(type: draw, vertexStart: 0, vertexCount: vertices.count)
- //((drawTriangles) ? .triangle : .point)
+ 
         
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {

@@ -19,6 +19,7 @@ class Renderer:NSObject{
     var pipelineState:MTLRenderPipelineState!
     
     private var drawTriangles:Bool = true
+    public var cycle:Bool = false
     
     //animation related instance variables
     var time:Float = 0
@@ -29,6 +30,10 @@ class Renderer:NSObject{
     var uniforms = Uniforms()
     
     let projectionFOV:Float = 70
+    
+    var rotationDegs:Float = 45
+    var yRotationDegs:Float = 0
+    var zScale:Float = 0
     
     init(metalView:MTKView){
         
@@ -99,12 +104,12 @@ class Renderer:NSObject{
         metalView.delegate = self
         print("initialised")
         
-        let translation = float4x4(translation: [0, 0.0, 0])
-        let rotation = float4x4(rotation: [0,radians(fromDegrees: 45),0])
+        let translation = float4x4(translation: [0, 0.0, zScale])
+        let rotation = float4x4(rotation: [0,radians(fromDegrees: self.rotationDegs),0])
         
         uniforms.modelMatrix = translation * rotation
         
-        uniforms.viewMatrix = float4x4(translation: [0.8,0,0]).inverse
+        uniforms.viewMatrix = float4x4(translation: [0.5,0,0]).inverse
         
         mtkView(metalView, drawableSizeWillChange: metalView.bounds.size)
         
@@ -132,35 +137,53 @@ extension Renderer:MTKViewDelegate{
                 return
         }
         
-        let floatFrames = Float(view.preferredFramesPerSecond);
-        
-        time += (1 / floatFrames)
-        
         var uniformsInternal = Uniforms()
-        //        matrix_float4x4 modelMatrix;
-        //        matrix_float4x4 viewMatrix;
-        //        matrix_float4x4 projectionMatrix;
-        switch time {
-        case let curr where curr < 2:
-            uniformsInternal.modelMatrix = float4x4.identity()
-            uniformsInternal.viewMatrix = float4x4.identity()
-            uniformsInternal.projectionMatrix = float4x4.identity()
-        case let curr where curr < 4:
-            uniformsInternal.modelMatrix = uniforms.modelMatrix
-            uniformsInternal.viewMatrix = float4x4.identity()
-            uniformsInternal.projectionMatrix = float4x4.identity()
-        case let curr where curr < 6:
-            uniformsInternal.modelMatrix = uniforms.modelMatrix
-            uniformsInternal.viewMatrix = uniforms.viewMatrix
-            uniformsInternal.projectionMatrix = float4x4.identity()
-        case let curr where curr < 10:
+        
+        if(cycle){
+            let floatFrames = Float(view.preferredFramesPerSecond);
+            
+            time += (1 / floatFrames)
+            
+            
+            //        matrix_float4x4 modelMatrix;
+            //        matrix_float4x4 viewMatrix;
+            //        matrix_float4x4 projectionMatrix;
+            switch time {
+            case let curr where curr < 2:
+                uniformsInternal.modelMatrix = float4x4.identity()
+                uniformsInternal.viewMatrix = float4x4.identity()
+                uniformsInternal.projectionMatrix = float4x4.identity()
+            case let curr where curr < 4:
+                uniformsInternal.modelMatrix = uniforms.modelMatrix
+                uniformsInternal.viewMatrix = float4x4.identity()
+                uniformsInternal.projectionMatrix = float4x4.identity()
+            case let curr where curr < 6:
+                uniformsInternal.modelMatrix = uniforms.modelMatrix
+                uniformsInternal.viewMatrix = uniforms.viewMatrix
+                uniformsInternal.projectionMatrix = float4x4.identity()
+            case let curr where curr < 10:
+                uniformsInternal.modelMatrix = uniforms.modelMatrix
+                uniformsInternal.viewMatrix = uniforms.viewMatrix
+                uniformsInternal.projectionMatrix = uniforms.projectionMatrix
+            default:
+                print("eh?")
+            }
+            
+        } else {
+            
+            let translation = float4x4(translation: [0, 0.0, zScale])
+            let rotation = float4x4(rotation: [radians(fromDegrees: self.yRotationDegs),radians(fromDegrees: self.rotationDegs),0])
+            
+            uniforms.modelMatrix = translation * rotation
+            
+           // uniforms.viewMatrix = float4x4(translation: [zScale,0,0]).inverse
+            
             uniformsInternal.modelMatrix = uniforms.modelMatrix
             uniformsInternal.viewMatrix = uniforms.viewMatrix
             uniformsInternal.projectionMatrix = uniforms.projectionMatrix
-        default:
-            print("eh?")
         }
         
+ 
         renderEncoder.setRenderPipelineState(pipelineState)
         
         if(drawTriangles){

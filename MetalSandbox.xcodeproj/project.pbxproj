@@ -54,6 +54,7 @@
 		574B19F021B2190A00C0C54F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 574B19EE21B2190A00C0C54F /* Main.storyboard */; };
 		574B19F721B2196E00C0C54F /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B19F621B2196E00C0C54F /* SceneView.swift */; };
 		57DA0F8B21AF64D300A74ACD /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
+		57DD877021B61A2400D47148 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD876F21B61A2400D47148 /* ViewController.swift */; };
 		57F1E8BD21B41B4800BF9272 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B821AF31D600A50060 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +130,7 @@
 		574B19F221B2190A00C0C54F /* ModelIOVoxelSmash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModelIOVoxelSmash.entitlements; sourceTree = "<group>"; };
 		574B19F621B2196E00C0C54F /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		57DA0F8A21AF641A00A74ACD /* choo-choo.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = "choo-choo.obj"; sourceTree = "<group>"; };
+		57DD876F21B61A2400D47148 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 		3DA6DCD121B1859800E1131B /* Projection */ = {
 			isa = PBXGroup;
 			children = (
+				57DD876F21B61A2400D47148 /* ViewController.swift */,
 				3DA6DCE721B1866C00E1131B /* ProjectionShader.metal */,
 				3DA6DCE221B185E900E1131B /* ProjectionRenderer.swift */,
 				3DA6DCD921B1859900E1131B /* Info.plist */,
@@ -613,6 +616,7 @@
 				3DA6DCE121B185CF00E1131B /* Primitive.swift in Sources */,
 				3DA6DCE821B1866C00E1131B /* ProjectionShader.metal in Sources */,
 				3DA6DCDE21B185C100E1131B /* AppDelegate.swift in Sources */,
+				57DD877021B61A2400D47148 /* ViewController.swift in Sources */,
 				3DA6DCE321B185E900E1131B /* ProjectionRenderer.swift in Sources */,
 				3DA6DCED21B1872400E1131B /* MathLibrary.swift in Sources */,
 			);
