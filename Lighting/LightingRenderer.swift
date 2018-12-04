@@ -17,6 +17,7 @@ class Renderer:NSObject{
     var mesh:MTKMesh!
     var vertexBuffer:MTLBuffer!
     var pipelineState:MTLRenderPipelineState!
+    var depthStencilState:MTLDepthStencilState!
     
     private var drawTriangles:Bool = true
     public var cycle:Bool = false
@@ -41,35 +42,42 @@ class Renderer:NSObject{
             fatalError("no device")
         }
         
+        metalView.depthStencilPixelFormat = .depth32Float
         metalView.device = device
+        Renderer.device = device
         Renderer.commandQueue = device.makeCommandQueue()!
         
         guard let importmeshFile = Bundle.main.url(forResource: "choo-choo", withExtension: "obj") else {
             fatalError()
         }
         
-        //Tells the GPU about the layout of streamed data
-        let vertexDescriptor = MTLVertexDescriptor()
-        vertexDescriptor.attributes[0].format = .float3
-        vertexDescriptor.attributes[0].offset = 0
-        vertexDescriptor.attributes[0].bufferIndex = 0
-        vertexDescriptor.layouts[0].stride = MemoryLayout<float3>.stride
         
-        //
-        let meshDescriptor = MTKModelIOVertexDescriptorFromMetal(vertexDescriptor)
-        (meshDescriptor.attributes[0] as! MDLVertexAttribute).name = MDLVertexAttributePosition
+        //Tells the GPU about the layout of streamed data
+        let vertexDescriptor = MDLVertexDescriptor()
+        vertexDescriptor.attributes[0] = MDLVertexAttribute(name: MDLVertexAttributePosition,
+                                                            format: .float3,
+                                                            offset: 0, bufferIndex: 0)
+        vertexDescriptor.attributes[1] = MDLVertexAttribute(name: MDLVertexAttributeNormal, format: .float3, offset: 12, bufferIndex: 0)
+        vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: 24)
+       
+        
+        
+        //buffer allocator
         let allocator = MTKMeshBufferAllocator(device: device)
         
         // Get mesh from file, first, create modelIO asset
-        let asset = MDLAsset(url: importmeshFile, vertexDescriptor: meshDescriptor, bufferAllocator: allocator)
+        let asset = MDLAsset(url: importmeshFile, vertexDescriptor: vertexDescriptor, bufferAllocator: allocator)
         //cast to modelIO mesh
         let mdlMesh = asset.object(at: 0) as! MDLMesh
-        
+        mdlMesh.addNormals(withAttributeNamed: "normals", creaseThreshold: 10.0)
         //cast to metal mesh
         do {
             mesh = try MTKMesh(mesh: mdlMesh, device: device)} catch {
                 print("error casting to metal mesh")
         }
+        vertexBuffer = mesh.vertexBuffers[0].buffer
+
+        
         
         //Generate pipeline descriptor, there is no need to save access to the library, simply parse the metal shaders and assign the functions to the pipeline Descriptor
         let library = device.makeDefaultLibrary()
@@ -82,8 +90,9 @@ class Renderer:NSObject{
         pipelineDescriptor.fragmentFunction = fragmentFunction
         
         //Get vertex descriptor from mesh via modelIO
-        pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mesh.vertexDescriptor)
+        pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(vertexDescriptor)
         
+        pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
         //get pixel format from view
         pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
         
@@ -113,6 +122,8 @@ class Renderer:NSObject{
         
         mtkView(metalView, drawableSizeWillChange: metalView.bounds.size)
         
+        buildDepthStencilState()
+        
     }
 }
 
@@ -136,7 +147,8 @@ extension Renderer:MTKViewDelegate{
             let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else {
                 return
         }
-        
+        renderEncoder.setDepthStencilState(depthStencilState)
+        //dodgy but proves a point
         var uniformsInternal = Uniforms()
         
         if(cycle){
@@ -181,7 +193,7 @@ extension Renderer:MTKViewDelegate{
         renderEncoder.setRenderPipelineState(pipelineState)
         
         
-        renderEncoder.setVertexBuffer(mesh.vertexBuffers[0].buffer, offset: 0, index: 0)
+        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         
         
         uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse
@@ -217,4 +229,13 @@ extension Renderer {
     func setTriangles(drawTriangles:Bool){
         self.drawTriangles = drawTriangles
     }
+    
+    func buildDepthStencilState(){
+        let descriptor = MTLDepthStencilDescriptor()
+        descriptor.depthCompareFunction = .less
+        descriptor.isDepthWriteEnabled = true
+        depthStencilState = Renderer.device.makeDepthStencilState(descriptor: descriptor)
+    }
+    
+    
 }

@@ -20,9 +20,14 @@
 		3D6A249E21B0714E00F054E5 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A248221B043B300F054E5 /* Main2.storyboard */; };
 		3D6A24A021B0722B00F054E5 /* RendererRotateScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A249F21B0722B00F054E5 /* RendererRotateScale.swift */; };
 		3D6A24A221B08B9E00F054E5 /* RotateShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A24A121B08B9E00F054E5 /* RotateShaders.metal */; };
-		3D8FFE3021B70E0E003A081B /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A248221B043B300F054E5 /* Main2.storyboard */; };
 		3D8FFE3221B70E2E003A081B /* LightingShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FFE3121B70E2E003A081B /* LightingShader.metal */; };
 		3D8FFE3421B70E3B003A081B /* LightingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FFE3321B70E3B003A081B /* LightingRenderer.swift */; };
+		3D8FFE3521B70F0A003A081B /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6DCE921B1872400E1131B /* MathLibrary.swift */; };
+		3D8FFE3621B70F5E003A081B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD876F21B61A2400D47148 /* ViewController.swift */; };
+		3D9DE59221B70FC7007BC069 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC222BC21AF31D700A50060 /* Main.storyboard */; };
+		3D9DE59421B7118B007BC069 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
+		3D9DE59521B7119D007BC069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B621AF31D600A50060 /* AppDelegate.swift */; };
+		3D9DE59621B711AA007BC069 /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
 		3DA6DCDE21B185C100E1131B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B621AF31D600A50060 /* AppDelegate.swift */; };
 		3DA6DCE021B185CE00E1131B /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
 		3DA6DCE121B185CF00E1131B /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
@@ -610,7 +615,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D8FFE3021B70E0E003A081B /* Main2.storyboard in Resources */,
+				3D9DE59221B70FC7007BC069 /* Main.storyboard in Resources */,
+				3D9DE59621B711AA007BC069 /* choo-choo.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,8 +692,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D9DE59521B7119D007BC069 /* AppDelegate.swift in Sources */,
 				3D8FFE3221B70E2E003A081B /* LightingShader.metal in Sources */,
 				3D8FFE3421B70E3B003A081B /* LightingRenderer.swift in Sources */,
+				3D8FFE3621B70F5E003A081B /* ViewController.swift in Sources */,
+				3D8FFE3521B70F0A003A081B /* MathLibrary.swift in Sources */,
+				3D9DE59421B7118B007BC069 /* Primitive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,6 +900,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jossy.Lighting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -909,6 +920,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jossy.Lighting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

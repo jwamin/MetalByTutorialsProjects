@@ -12,7 +12,7 @@
 		<key>HypeTrain.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Lighting.xcscheme_^#shared#^_</key>
 		<dict>
@@ -22,17 +22,17 @@
 		<key>ModelIOFactory.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>5</integer>
 		</dict>
 		<key>ModelIOVoxelSmash.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>7</integer>
 		</dict>
 		<key>ModelIOVoxels.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>6</integer>
 		</dict>
 		<key>ModelIOWavefrontOBJ.xcscheme</key>
 		<dict>
@@ -47,7 +47,7 @@
 		<key>Projection.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 		<key>ScaleRotateMatrix.xcscheme</key>
 		<dict>
