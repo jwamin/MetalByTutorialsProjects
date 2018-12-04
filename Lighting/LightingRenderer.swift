@@ -13,7 +13,8 @@ class Renderer:NSObject{
     
     static var device:MTLDevice!
     static var commandQueue: MTLCommandQueue!
-    
+    static var colorPixelFormat: MTLPixelFormat!
+    static var library:MTLLibrary!
     var mesh:MTKMesh!
     var vertexBuffer:MTLBuffer!
     var pipelineState:MTLRenderPipelineState!
@@ -36,6 +37,8 @@ class Renderer:NSObject{
     var yRotationDegs:Float = 0
     var zScale:Float = 0
     
+    let model:Model
+    
     init(metalView:MTKView){
         
         guard let device = MTLCreateSystemDefaultDevice() else {
@@ -44,64 +47,20 @@ class Renderer:NSObject{
         
         metalView.depthStencilPixelFormat = .depth32Float
         metalView.device = device
+        Renderer.colorPixelFormat = metalView.colorPixelFormat
         Renderer.device = device
         Renderer.commandQueue = device.makeCommandQueue()!
+        Renderer.library = device.makeDefaultLibrary()
+
         
-        guard let importmeshFile = Bundle.main.url(forResource: "choo-choo", withExtension: "obj") else {
-            fatalError()
-        }
+        model = Model(objName: "choo-choo")
+
         
-        
-        //Tells the GPU about the layout of streamed data
-        let vertexDescriptor = MDLVertexDescriptor()
-        vertexDescriptor.attributes[0] = MDLVertexAttribute(name: MDLVertexAttributePosition,
-                                                            format: .float3,
-                                                            offset: 0, bufferIndex: 0)
-        vertexDescriptor.attributes[1] = MDLVertexAttribute(name: MDLVertexAttributeNormal, format: .float3, offset: 12, bufferIndex: 0)
-        vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: 24)
-       
-        
-        
-        //buffer allocator
-        let allocator = MTKMeshBufferAllocator(device: device)
-        
-        // Get mesh from file, first, create modelIO asset
-        let asset = MDLAsset(url: importmeshFile, vertexDescriptor: vertexDescriptor, bufferAllocator: allocator)
-        //cast to modelIO mesh
-        let mdlMesh = asset.object(at: 0) as! MDLMesh
-        mdlMesh.addNormals(withAttributeNamed: "normals", creaseThreshold: 10.0)
-        //cast to metal mesh
-        do {
-            mesh = try MTKMesh(mesh: mdlMesh, device: device)} catch {
-                print("error casting to metal mesh")
-        }
-        vertexBuffer = mesh.vertexBuffers[0].buffer
+
 
         
         
-        //Generate pipeline descriptor, there is no need to save access to the library, simply parse the metal shaders and assign the functions to the pipeline Descriptor
-        let library = device.makeDefaultLibrary()
-        let vertexFunction = library?.makeFunction(name: "vertex_main")
-        let fragmentFunction = library?.makeFunction(name: "fragment_main")
-        
-        //Create pipeline descriptor and assign shader functions
-        let pipelineDescriptor = MTLRenderPipelineDescriptor()
-        pipelineDescriptor.vertexFunction = vertexFunction
-        pipelineDescriptor.fragmentFunction = fragmentFunction
-        
-        //Get vertex descriptor from mesh via modelIO
-        pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(vertexDescriptor)
-        
-        pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
-        //get pixel format from view
-        pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
-        
-        //compine all into pipeline state which will be used by draw function
-        do{
-            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-        } catch let error{
-            print(error.localizedDescription)
-        }
+
         
         //finally, call super
         super.init()
@@ -190,10 +149,10 @@ extension Renderer:MTKViewDelegate{
         }
         
  
-        renderEncoder.setRenderPipelineState(pipelineState)
+        renderEncoder.setRenderPipelineState(model.pipelineState)
         
         
-        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: 0)
         
         
         uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse
@@ -202,7 +161,7 @@ extension Renderer:MTKViewDelegate{
         
         renderEncoder.setFragmentBytes(&magenta, length: MemoryLayout<float4>.stride, index: 0)
         
-        for submesh in mesh.submeshes{
+        for submesh in model.mesh.submeshes{
             
             renderEncoder.drawIndexedPrimitives(type: ((drawTriangles) ? .triangle : .point), indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
             

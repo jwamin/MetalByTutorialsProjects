@@ -28,6 +28,7 @@
 		3D9DE59421B7118B007BC069 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
 		3D9DE59521B7119D007BC069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B621AF31D600A50060 /* AppDelegate.swift */; };
 		3D9DE59621B711AA007BC069 /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
+		3D9DE59B21B72341007BC069 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DE59A21B72341007BC069 /* Model.swift */; };
 		3DA6DCDE21B185C100E1131B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B621AF31D600A50060 /* AppDelegate.swift */; };
 		3DA6DCE021B185CE00E1131B /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
 		3DA6DCE121B185CF00E1131B /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
@@ -106,6 +107,7 @@
 		3D8FFE2C21B70DF8003A081B /* Lighting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lighting.entitlements; sourceTree = "<group>"; };
 		3D8FFE3121B70E2E003A081B /* LightingShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = LightingShader.metal; sourceTree = "<group>"; };
 		3D8FFE3321B70E3B003A081B /* LightingRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightingRenderer.swift; sourceTree = "<group>"; };
+		3D9DE59A21B72341007BC069 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3DA6DCD021B1859800E1131B /* Projection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Projection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA6DCD921B1859900E1131B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DA6DCDA21B1859900E1131B /* Projection.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Projection.entitlements; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				3D8FFE3321B70E3B003A081B /* LightingRenderer.swift */,
+				3D9DE59A21B72341007BC069 /* Model.swift */,
 				3D8FFE3121B70E2E003A081B /* LightingShader.metal */,
 				3D8FFE2B21B70DF8003A081B /* Info.plist */,
 				3D8FFE2C21B70DF8003A081B /* Lighting.entitlements */,
@@ -694,6 +697,7 @@
 			files = (
 				3D9DE59521B7119D007BC069 /* AppDelegate.swift in Sources */,
 				3D8FFE3221B70E2E003A081B /* LightingShader.metal in Sources */,
+				3D9DE59B21B72341007BC069 /* Model.swift in Sources */,
 				3D8FFE3421B70E3B003A081B /* LightingRenderer.swift in Sources */,
 				3D8FFE3621B70F5E003A081B /* ViewController.swift in Sources */,
 				3D8FFE3521B70F0A003A081B /* MathLibrary.swift in Sources */,
