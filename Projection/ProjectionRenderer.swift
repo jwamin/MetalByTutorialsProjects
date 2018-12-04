@@ -144,10 +144,6 @@ extension Renderer:MTKViewDelegate{
             
             time += (1 / floatFrames)
             
-            
-            //        matrix_float4x4 modelMatrix;
-            //        matrix_float4x4 viewMatrix;
-            //        matrix_float4x4 projectionMatrix;
             switch time {
             case let curr where curr < 2:
                 uniformsInternal.modelMatrix = float4x4.identity()
@@ -170,14 +166,12 @@ extension Renderer:MTKViewDelegate{
             }
             
         } else {
-            
+            //don't cycle through time, but get mouse input
             let translation = float4x4(translation: [0, 0.0, zScale])
             let rotation = float4x4(rotation: [radians(fromDegrees: self.yRotationDegs),radians(fromDegrees: self.rotationDegs),0])
             
             uniforms.modelMatrix = translation * rotation
-            
-           // uniforms.viewMatrix = float4x4(translation: [zScale,0,0]).inverse
-            
+
             uniformsInternal.modelMatrix = uniforms.modelMatrix
             uniformsInternal.viewMatrix = uniforms.viewMatrix
             uniformsInternal.projectionMatrix = uniforms.projectionMatrix
@@ -186,19 +180,8 @@ extension Renderer:MTKViewDelegate{
  
         renderEncoder.setRenderPipelineState(pipelineState)
         
-        if(drawTriangles){
-            //  renderEncoder.setTriangleFillMode(.lines)
-        }
         
         renderEncoder.setVertexBuffer(mesh.vertexBuffers[0].buffer, offset: 0, index: 0)
-        
-        //        let delta = 1.0 / Float(view.preferredFramesPerSecond)
-        //        time += delta
-        //        uniforms.viewMatrix = float4x4.identity()
-        //        uniforms.modelMatrix = float4x4(rotationY: sin(time))
-        
-        
-        
         
         
         uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse
@@ -213,8 +196,6 @@ extension Renderer:MTKViewDelegate{
             
         }
         
-        
-        
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {
             return
@@ -223,6 +204,7 @@ extension Renderer:MTKViewDelegate{
         commandBuffer.present(drawable)
         commandBuffer.commit()
         
+        //increment timer
         if(time>=10){
             time = 0
         }
