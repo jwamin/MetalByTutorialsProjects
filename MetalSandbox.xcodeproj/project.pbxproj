@@ -20,6 +20,9 @@
 		3D6A249E21B0714E00F054E5 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A248221B043B300F054E5 /* Main2.storyboard */; };
 		3D6A24A021B0722B00F054E5 /* RendererRotateScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A249F21B0722B00F054E5 /* RendererRotateScale.swift */; };
 		3D6A24A221B08B9E00F054E5 /* RotateShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A24A121B08B9E00F054E5 /* RotateShaders.metal */; };
+		3D8FFE3021B70E0E003A081B /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A248221B043B300F054E5 /* Main2.storyboard */; };
+		3D8FFE3221B70E2E003A081B /* LightingShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FFE3121B70E2E003A081B /* LightingShader.metal */; };
+		3D8FFE3421B70E3B003A081B /* LightingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FFE3321B70E3B003A081B /* LightingRenderer.swift */; };
 		3DA6DCDE21B185C100E1131B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B621AF31D600A50060 /* AppDelegate.swift */; };
 		3DA6DCE021B185CE00E1131B /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
 		3DA6DCE121B185CF00E1131B /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222C821AF349A00A50060 /* Primitive.swift */; };
@@ -93,6 +96,11 @@
 		3D6A249F21B0722B00F054E5 /* RendererRotateScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RendererRotateScale.swift; sourceTree = "<group>"; };
 		3D6A24A121B08B9E00F054E5 /* RotateShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = RotateShaders.metal; sourceTree = "<group>"; };
 		3D6A24A321B0977100F054E5 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		3D8FFE2221B70DF7003A081B /* Lighting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lighting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D8FFE2B21B70DF8003A081B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D8FFE2C21B70DF8003A081B /* Lighting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lighting.entitlements; sourceTree = "<group>"; };
+		3D8FFE3121B70E2E003A081B /* LightingShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = LightingShader.metal; sourceTree = "<group>"; };
+		3D8FFE3321B70E3B003A081B /* LightingRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightingRenderer.swift; sourceTree = "<group>"; };
 		3DA6DCD021B1859800E1131B /* Projection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Projection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA6DCD921B1859900E1131B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DA6DCDA21B1859900E1131B /* Projection.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Projection.entitlements; sourceTree = "<group>"; };
@@ -142,6 +150,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3D6A248821B06FB100F054E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D8FFE1F21B70DF7003A081B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -217,6 +232,34 @@
 			path = ScaleRotate;
 			sourceTree = "<group>";
 		};
+		3D8FFE1C21B70D8A003A081B /* SceneKit */ = {
+			isa = PBXGroup;
+			children = (
+				574B19E721B2190800C0C54F /* ModelIOVoxelSmash */,
+			);
+			path = SceneKit;
+			sourceTree = "<group>";
+		};
+		3D8FFE1D21B70DA6003A081B /* Model IO */ = {
+			isa = PBXGroup;
+			children = (
+				3DECAC6321B1B830007D429C /* ModelIOFactory */,
+				3DECAC6E21B1E125007D429C /* ModelIOVoxels */,
+			);
+			path = "Model IO";
+			sourceTree = "<group>";
+		};
+		3D8FFE2321B70DF7003A081B /* Lighting */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FFE3321B70E3B003A081B /* LightingRenderer.swift */,
+				3D8FFE3121B70E2E003A081B /* LightingShader.metal */,
+				3D8FFE2B21B70DF8003A081B /* Info.plist */,
+				3D8FFE2C21B70DF8003A081B /* Lighting.entitlements */,
+			);
+			path = Lighting;
+			sourceTree = "<group>";
+		};
 		3DA6DCD121B1859800E1131B /* Projection */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,9 +296,9 @@
 				3D6A248C21B06FB100F054E5 /* ScaleRotate */,
 				3DA6DCD121B1859800E1131B /* Projection */,
 				3DA6DCF321B193E600E1131B /* HypeTrain */,
-				3DECAC6321B1B830007D429C /* ModelIOFactory */,
-				3DECAC6E21B1E125007D429C /* ModelIOVoxels */,
-				574B19E721B2190800C0C54F /* ModelIOVoxelSmash */,
+				3D8FFE2321B70DF7003A081B /* Lighting */,
+				3D8FFE1D21B70DA6003A081B /* Model IO */,
+				3D8FFE1C21B70D8A003A081B /* SceneKit */,
 				3DC222B421AF31D600A50060 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -271,6 +314,7 @@
 				3DECAC6221B1B830007D429C /* ModelIOFactory */,
 				3DECAC6D21B1E125007D429C /* ModelIOVoxels */,
 				574B19E621B2190800C0C54F /* ModelIOVoxelSmash.app */,
+				3D8FFE2221B70DF7003A081B /* Lighting.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -357,6 +401,23 @@
 			name = ScaleRotateMatrix;
 			productName = ScaleRotate;
 			productReference = 3D6A248B21B06FB100F054E5 /* ScaleRotateMatrix.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3D8FFE2121B70DF7003A081B /* Lighting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D8FFE2D21B70DF8003A081B /* Build configuration list for PBXNativeTarget "Lighting" */;
+			buildPhases = (
+				3D8FFE1E21B70DF7003A081B /* Sources */,
+				3D8FFE1F21B70DF7003A081B /* Frameworks */,
+				3D8FFE2021B70DF7003A081B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lighting;
+			productName = Lighting;
+			productReference = 3D8FFE2221B70DF7003A081B /* Lighting.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3DA6DCCF21B1859800E1131B /* Projection */ = {
@@ -477,6 +538,9 @@
 					3D6A248A21B06FB100F054E5 = {
 						CreatedOnToolsVersion = 10.0;
 					};
+					3D8FFE2121B70DF7003A081B = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					3DA6DCCF21B1859800E1131B = {
 						CreatedOnToolsVersion = 10.0;
 					};
@@ -518,6 +582,7 @@
 				3DECAC6121B1B830007D429C /* ModelIOFactory */,
 				3DECAC6C21B1E125007D429C /* ModelIOVoxels */,
 				574B19E521B2190800C0C54F /* ModelIOVoxelSmash */,
+				3D8FFE2121B70DF7003A081B /* Lighting */,
 			);
 		};
 /* End PBXProject section */
@@ -538,6 +603,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D6A249E21B0714E00F054E5 /* Main2.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D8FFE2021B70DF7003A081B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D8FFE3021B70E0E003A081B /* Main2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +679,15 @@
 				3D6A249921B06FE500F054E5 /* AppDelegate.swift in Sources */,
 				3DA6DCE021B185CE00E1131B /* Primitive.swift in Sources */,
 				3DA6DCEC21B1872400E1131B /* MathLibrary.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D8FFE1E21B70DF7003A081B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D8FFE3221B70E2E003A081B /* LightingShader.metal in Sources */,
+				3D8FFE3421B70E3B003A081B /* LightingRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +872,44 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jossy.ScaleRotate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		3D8FFE2E21B70DF8003A081B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Lighting/Lighting.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3C42F7N9CQ;
+				INFOPLIST_FILE = Lighting/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jossy.Lighting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		3D8FFE2F21B70DF8003A081B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Lighting/Lighting.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3C42F7N9CQ;
+				INFOPLIST_FILE = Lighting/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jossy.Lighting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1128,6 +1248,15 @@
 			buildConfigurations = (
 				3D6A249721B06FB200F054E5 /* Debug */,
 				3D6A249821B06FB200F054E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D8FFE2D21B70DF8003A081B /* Build configuration list for PBXNativeTarget "Lighting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D8FFE2E21B70DF8003A081B /* Debug */,
+				3D8FFE2F21B70DF8003A081B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
