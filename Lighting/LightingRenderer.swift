@@ -39,6 +39,24 @@ class Renderer:NSObject{
     
     let model:Model
     
+    var lights:[Light] = [Light]()
+    
+    lazy var sunlight:Light = {
+       var light = buildDefaultLight()
+        light.position = [1,2,-2]
+        return light
+    }()
+    
+    lazy var ambientLight:Light = {
+        var light = Light()
+        light.color = [0.5,1,0]
+        light.intensity = 0.2
+        light.type = Ambientlight
+        return light
+    }()
+    
+    var fragmentUniforms = FragmentUniforms()
+    
     init(metalView:MTKView){
         
         guard let device = MTLCreateSystemDefaultDevice() else {
@@ -54,11 +72,6 @@ class Renderer:NSObject{
 
         
         model = Model(objName: "choo-choo")
-
-        
-
-
-        
         
 
         
@@ -83,6 +96,9 @@ class Renderer:NSObject{
         
         buildDepthStencilState()
         
+        lights.append(sunlight)
+        lights.append(ambientLight)
+        fragmentUniforms.lightCount = UInt32(lights.count)
     }
 }
 
@@ -156,10 +172,14 @@ extension Renderer:MTKViewDelegate{
         
         
         uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse
+        uniformsInternal.normalMatrix = float3x3(normalFrom4x4: uniformsInternal.modelMatrix)
         
         renderEncoder.setVertexBytes(&uniformsInternal, length: MemoryLayout<Uniforms>.stride, index: 1)
         
         renderEncoder.setFragmentBytes(&magenta, length: MemoryLayout<float4>.stride, index: 0)
+        
+        renderEncoder.setFragmentBytes(&lights, length: MemoryLayout<Light>.stride * lights.count, index: 2)
+        renderEncoder.setFragmentBytes(&fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: 3)
         
         for submesh in model.mesh.submeshes{
             
@@ -185,6 +205,7 @@ extension Renderer:MTKViewDelegate{
 
 
 extension Renderer {
+    
     func setTriangles(drawTriangles:Bool){
         self.drawTriangles = drawTriangles
     }
@@ -196,5 +217,15 @@ extension Renderer {
         depthStencilState = Renderer.device.makeDepthStencilState(descriptor: descriptor)
     }
     
+    func buildDefaultLight()->Light{
+        var light = Light()
+        light.position = [0,0,0]
+        light.color = [1,1,1]
+        light.specularColor = [0.6,0.6,0.6]
+        light.intensity = 1
+        light.attenuation = float3(x: 1, y: 0, z: 0)
+        light.type = Sunlight
+        return light
+    }
     
 }
