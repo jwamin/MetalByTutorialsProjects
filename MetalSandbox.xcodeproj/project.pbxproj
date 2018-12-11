@@ -20,6 +20,14 @@
 		3D6A249E21B0714E00F054E5 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6A248221B043B300F054E5 /* Main2.storyboard */; };
 		3D6A24A021B0722B00F054E5 /* RendererRotateScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A249F21B0722B00F054E5 /* RendererRotateScale.swift */; };
 		3D6A24A221B08B9E00F054E5 /* RotateShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D6A24A121B08B9E00F054E5 /* RotateShaders.metal */; };
+		3D78010A21C03B560024E261 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B621AF31D600A50060 /* AppDelegate.swift */; };
+		3D78010C21C03B690024E261 /* LightingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78010B21C03B690024E261 /* LightingRenderer.swift */; };
+		3D78010E21C03B750024E261 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78010D21C03B750024E261 /* Model.swift */; };
+		3D78011021C03B830024E261 /* LightingShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D78010F21C03B830024E261 /* LightingShader.metal */; };
+		3D78011121C03B910024E261 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6DCE921B1872400E1131B /* MathLibrary.swift */; };
+		3D78011221C03BA50024E261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC222BC21AF31D700A50060 /* Main.storyboard */; };
+		3D78011421C03BDE0024E261 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78011321C03BDE0024E261 /* ViewController.swift */; };
+		3D78011521C03BED0024E261 /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
 		3D8FFE3221B70E2E003A081B /* LightingShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FFE3121B70E2E003A081B /* LightingShader.metal */; };
 		3D8FFE3421B70E3B003A081B /* LightingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FFE3321B70E3B003A081B /* LightingRenderer.swift */; };
 		3D8FFE3521B70F0A003A081B /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6DCE921B1872400E1131B /* MathLibrary.swift */; };
@@ -102,6 +110,13 @@
 		3D6A249F21B0722B00F054E5 /* RendererRotateScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RendererRotateScale.swift; sourceTree = "<group>"; };
 		3D6A24A121B08B9E00F054E5 /* RotateShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = RotateShaders.metal; sourceTree = "<group>"; };
 		3D6A24A321B0977100F054E5 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		3D7800FC21C03B3A0024E261 /* Lighting2SceneGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lighting2SceneGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D78010521C03B3C0024E261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D78010621C03B3C0024E261 /* Lighting2SceneGraph.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lighting2SceneGraph.entitlements; sourceTree = "<group>"; };
+		3D78010B21C03B690024E261 /* LightingRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightingRenderer.swift; sourceTree = "<group>"; };
+		3D78010D21C03B750024E261 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3D78010F21C03B830024E261 /* LightingShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = LightingShader.metal; sourceTree = "<group>"; };
+		3D78011321C03BDE0024E261 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3D8FFE2221B70DF7003A081B /* Lighting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lighting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8FFE2B21B70DF8003A081B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D8FFE2C21B70DF8003A081B /* Lighting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lighting.entitlements; sourceTree = "<group>"; };
@@ -157,6 +172,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3D6A248821B06FB100F054E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D7800F921C03B3A0024E261 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,6 +261,19 @@
 			path = ScaleRotate;
 			sourceTree = "<group>";
 		};
+		3D7800FD21C03B3A0024E261 /* Lighting2SceneGraph */ = {
+			isa = PBXGroup;
+			children = (
+				3D78011321C03BDE0024E261 /* ViewController.swift */,
+				3D78010F21C03B830024E261 /* LightingShader.metal */,
+				3D78010D21C03B750024E261 /* Model.swift */,
+				3D78010B21C03B690024E261 /* LightingRenderer.swift */,
+				3D78010521C03B3C0024E261 /* Info.plist */,
+				3D78010621C03B3C0024E261 /* Lighting2SceneGraph.entitlements */,
+			);
+			path = Lighting2SceneGraph;
+			sourceTree = "<group>";
+		};
 		3D8FFE1C21B70D8A003A081B /* SceneKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +340,7 @@
 				3DA6DCD121B1859800E1131B /* Projection */,
 				3DA6DCF321B193E600E1131B /* HypeTrain */,
 				3D8FFE2321B70DF7003A081B /* Lighting */,
+				3D7800FD21C03B3A0024E261 /* Lighting2SceneGraph */,
 				3D8FFE1D21B70DA6003A081B /* Model IO */,
 				3D8FFE1C21B70D8A003A081B /* SceneKit */,
 				3DC222B421AF31D600A50060 /* Products */,
@@ -323,6 +359,7 @@
 				3DECAC6D21B1E125007D429C /* ModelIOVoxels */,
 				574B19E621B2190800C0C54F /* ModelIOVoxelSmash.app */,
 				3D8FFE2221B70DF7003A081B /* Lighting.app */,
+				3D7800FC21C03B3A0024E261 /* Lighting2SceneGraph.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -409,6 +446,23 @@
 			name = ScaleRotateMatrix;
 			productName = ScaleRotate;
 			productReference = 3D6A248B21B06FB100F054E5 /* ScaleRotateMatrix.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3D7800FB21C03B3A0024E261 /* Lighting2SceneGraph */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D78010921C03B3C0024E261 /* Build configuration list for PBXNativeTarget "Lighting2SceneGraph" */;
+			buildPhases = (
+				3D7800F821C03B3A0024E261 /* Sources */,
+				3D7800F921C03B3A0024E261 /* Frameworks */,
+				3D7800FA21C03B3A0024E261 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lighting2SceneGraph;
+			productName = Lighting2SceneGraph;
+			productReference = 3D7800FC21C03B3A0024E261 /* Lighting2SceneGraph.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3D8FFE2121B70DF7003A081B /* Lighting */ = {
@@ -546,6 +600,9 @@
 					3D6A248A21B06FB100F054E5 = {
 						CreatedOnToolsVersion = 10.0;
 					};
+					3D7800FB21C03B3A0024E261 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					3D8FFE2121B70DF7003A081B = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -591,6 +648,7 @@
 				3DECAC6C21B1E125007D429C /* ModelIOVoxels */,
 				574B19E521B2190800C0C54F /* ModelIOVoxelSmash */,
 				3D8FFE2121B70DF7003A081B /* Lighting */,
+				3D7800FB21C03B3A0024E261 /* Lighting2SceneGraph */,
 			);
 		};
 /* End PBXProject section */
@@ -611,6 +669,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D6A249E21B0714E00F054E5 /* Main2.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D7800FA21C03B3A0024E261 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D78011221C03BA50024E261 /* Main.storyboard in Resources */,
+				3D78011521C03BED0024E261 /* choo-choo.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +755,19 @@
 				3D6A249921B06FE500F054E5 /* AppDelegate.swift in Sources */,
 				3DA6DCE021B185CE00E1131B /* Primitive.swift in Sources */,
 				3DA6DCEC21B1872400E1131B /* MathLibrary.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D7800F821C03B3A0024E261 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D78011421C03BDE0024E261 /* ViewController.swift in Sources */,
+				3D78010E21C03B750024E261 /* Model.swift in Sources */,
+				3D78010C21C03B690024E261 /* LightingRenderer.swift in Sources */,
+				3D78011021C03B830024E261 /* LightingShader.metal in Sources */,
+				3D78010A21C03B560024E261 /* AppDelegate.swift in Sources */,
+				3D78011121C03B910024E261 /* MathLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,6 +966,44 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jossy.ScaleRotate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		3D78010721C03B3C0024E261 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Lighting2SceneGraph/Lighting2SceneGraph.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3C42F7N9CQ;
+				INFOPLIST_FILE = Lighting2SceneGraph/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jossy.Lighting2SceneGraph;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		3D78010821C03B3C0024E261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Lighting2SceneGraph/Lighting2SceneGraph.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3C42F7N9CQ;
+				INFOPLIST_FILE = Lighting2SceneGraph/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jossy.Lighting2SceneGraph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1266,6 +1384,15 @@
 			buildConfigurations = (
 				3D6A249721B06FB200F054E5 /* Debug */,
 				3D6A249821B06FB200F054E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D78010921C03B3C0024E261 /* Build configuration list for PBXNativeTarget "Lighting2SceneGraph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D78010721C03B3C0024E261 /* Debug */,
+				3D78010821C03B3C0024E261 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
