@@ -7,7 +7,7 @@
 //
 
 #include <metal_stdlib>
-#include "Common.h"
+#include "../Common.h" // path tweak here to allow debugging
 using namespace metal;
 
 struct VertexIn {
@@ -36,15 +36,15 @@ vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant U
 }
 
 fragment float4 fragment_main(VertexOut in [[stage_in]], constant Light *lights [[buffer(2)]], constant FragmentUniforms &fragmentUniforms [[buffer(3)]]){
-    float3 ambientColor = 0;
-    float3 baseColor = float3(0,0,1);
-    float3 diffuseColor = 0;
-    float3 normalDirection = normalize(in.worldNormal);
+    float3 ambientColor = 0; //resulting ambient color is unset before lights arrive
+    float3 baseColor = float3(0,0,1); // base lighting color is BLUE
+    float3 diffuseColor = 0; //diffuse will be calculated in loop
+    float3 normalDirection = normalize(in.worldNormal); // resize into unit vectors ( length 1 )
     for (uint i = 0; i < fragmentUniforms.lightCount; i++){
         Light light = lights[i];
         if(light.type == Sunlight){
             float3 lightDirection = normalize(light.position);
-            float diffuseIntensity = saturate(dot(lightDirection,normalDirection));
+            float diffuseIntensity = saturate(dot(lightDirection,normalDirection)); // `dot` product, angle from incoming light and reflection of surface normal
             diffuseColor+=light.color * baseColor * diffuseIntensity;
         } else if (light.type == Ambientlight){
             ambientColor += light.color * light.intensity;

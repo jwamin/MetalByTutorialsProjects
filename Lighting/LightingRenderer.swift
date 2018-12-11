@@ -172,6 +172,8 @@ extension Renderer:MTKViewDelegate{
         
         
         uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse
+        
+        //set normal matrix here
         uniformsInternal.normalMatrix = float3x3(normalFrom4x4: uniformsInternal.modelMatrix)
         
         renderEncoder.setVertexBytes(&uniformsInternal, length: MemoryLayout<Uniforms>.stride, index: 1)
