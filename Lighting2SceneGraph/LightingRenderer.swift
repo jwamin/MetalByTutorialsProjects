@@ -24,7 +24,7 @@ class Renderer:NSObject{
     public var cycle:Bool = false
     
     //animation related instance variables
-    var time:Float = 0
+   //var time:Float = 0
     var constants = Constants()
     
     var magenta:float4 = float4(1, 0, 1, 1);
@@ -32,15 +32,12 @@ class Renderer:NSObject{
     var uniforms = Uniforms()
     
     let projectionFOV:Float = 70
-    
     var rotationDegs:Float = 45
     var yRotationDegs:Float = 0
     var zScale:Float = 0
     
-    let model:Model
-    
-    var lights:[Light] = [Light]()
-    
+    let scene:Scene = Scene()
+
     lazy var sunlight:Light = {
        var light = buildDefaultLight()
         light.position = [1,2,-2]
@@ -70,20 +67,22 @@ class Renderer:NSObject{
         Renderer.commandQueue = device.makeCommandQueue()!
         Renderer.library = device.makeDefaultLibrary()
 
+        let model2 = Model(objName: "primative",modelExtn: "usd")
+        model2.position = float3(0,1,1)
+        let model = Model(objName: "choo-choo",modelExtn: "obj")
+        scene.nodes.append(model)
+        scene.nodes.append(model2)
         
-        model = Model(objName: "choo-choo")
-        
-
+    
         
         //finally, call super
         super.init()
         
-        //set background color for GPU draw
+        //set wierd off-yellow background color for GPU draw
         metalView.clearColor = MTLClearColor(red: 1.0, green: 1.0, blue: 0.8, alpha: 1.0)
         
         //assign metalkitview delegate to self, which starts the draw loop
         metalView.delegate = self
-        print("initialised")
         
         let translation = float4x4(translation: [0, 0.0, zScale])
         let rotation = float4x4(rotation: [0,radians(fromDegrees: self.rotationDegs),0])
@@ -96,9 +95,9 @@ class Renderer:NSObject{
         
         buildDepthStencilState()
         
-        lights.append(sunlight)
-        lights.append(ambientLight)
-        fragmentUniforms.lightCount = UInt32(lights.count)
+        scene.lights.append(sunlight)
+        scene.lights.append(ambientLight)
+        fragmentUniforms.lightCount = UInt32(scene.lights.count)
     }
 }
 
@@ -123,70 +122,43 @@ extension Renderer:MTKViewDelegate{
                 return
         }
         renderEncoder.setDepthStencilState(depthStencilState)
-        //dodgy but proves a point
-        var uniformsInternal = Uniforms()
         
-        if(cycle){
-            let floatFrames = Float(view.preferredFramesPerSecond);
+        //don't cycle through time, but get mouse input
+        let translation = float4x4(translation: [0, 0.0, zScale])
+        let rotation = float4x4(rotation: [radians(fromDegrees: self.yRotationDegs),radians(fromDegrees: self.rotationDegs),0])
             
-            time += (1 / floatFrames)
-            
-            switch time {
-            case let curr where curr < 2:
-                uniformsInternal.modelMatrix = float4x4.identity()
-                uniformsInternal.viewMatrix = float4x4.identity()
-                uniformsInternal.projectionMatrix = float4x4.identity()
-            case let curr where curr < 4:
-                uniformsInternal.modelMatrix = uniforms.modelMatrix
-                uniformsInternal.viewMatrix = float4x4.identity()
-                uniformsInternal.projectionMatrix = float4x4.identity()
-            case let curr where curr < 6:
-                uniformsInternal.modelMatrix = uniforms.modelMatrix
-                uniformsInternal.viewMatrix = uniforms.viewMatrix
-                uniformsInternal.projectionMatrix = float4x4.identity()
-            case let curr where curr < 10:
-                uniformsInternal.modelMatrix = uniforms.modelMatrix
-                uniformsInternal.viewMatrix = uniforms.viewMatrix
-                uniformsInternal.projectionMatrix = uniforms.projectionMatrix
-            default:
-                print("eh?")
-            }
-            
-        } else {
-            //don't cycle through time, but get mouse input
-            let translation = float4x4(translation: [0, 0.0, zScale])
-            let rotation = float4x4(rotation: [radians(fromDegrees: self.yRotationDegs),radians(fromDegrees: self.rotationDegs),0])
-            
-            uniforms.modelMatrix = translation * rotation
-
-            uniformsInternal.modelMatrix = uniforms.modelMatrix
-            uniformsInternal.viewMatrix = uniforms.viewMatrix
-            uniformsInternal.projectionMatrix = uniforms.projectionMatrix
-        }
-        
+        //uniforms.modelMatrix = translation * rotation
  
-        renderEncoder.setRenderPipelineState(model.pipelineState)
         
         
-        renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: 0)
-        
-        
-        uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse
+        uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse * rotation
         
         //set normal matrix here
-        uniformsInternal.normalMatrix = float3x3(normalFrom4x4: uniformsInternal.modelMatrix)
+        uniforms.normalMatrix = float3x3(normalFrom4x4: uniforms.modelMatrix)
         
-        renderEncoder.setVertexBytes(&uniformsInternal, length: MemoryLayout<Uniforms>.stride, index: 1)
-        
+        renderEncoder.setVertexBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
         renderEncoder.setFragmentBytes(&magenta, length: MemoryLayout<float4>.stride, index: 0)
-        
-        renderEncoder.setFragmentBytes(&lights, length: MemoryLayout<Light>.stride * lights.count, index: 2)
+        renderEncoder.setFragmentBytes(&scene.lights, length: MemoryLayout<Light>.stride * scene.lights.count, index: 2)
         renderEncoder.setFragmentBytes(&fragmentUniforms, length: MemoryLayout<FragmentUniforms>.stride, index: 3)
         
-        for submesh in model.mesh.submeshes{
+        // render all the models in the array
+        for model in scene.nodes as! [Model] {
+            // model matrix now comes from the Model's superclass: Node
+            uniforms.modelMatrix = model.modelMatrix * translation
+            uniforms.normalMatrix = float3x3(normalFrom4x4: model.modelMatrix)
             
-            renderEncoder.drawIndexedPrimitives(type: ((drawTriangles) ? .triangle : .point), indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
+            renderEncoder.setVertexBytes(&uniforms,
+                                         length: MemoryLayout<Uniforms>.stride, index: 1)
             
+            renderEncoder.setRenderPipelineState(model.pipelineState)
+            renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: 0)
+            for submesh in model.mesh.submeshes {
+                renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                                    indexCount: submesh.indexCount,
+                                                    indexType: submesh.indexType,
+                                                    indexBuffer: submesh.indexBuffer.buffer,
+                                                    indexBufferOffset: submesh.indexBuffer.offset)
+            }
         }
         
         renderEncoder.endEncoding()
@@ -196,11 +168,6 @@ extension Renderer:MTKViewDelegate{
         
         commandBuffer.present(drawable)
         commandBuffer.commit()
-        
-        //increment timer
-        if(time>=10){
-            time = 0
-        }
         
     }
 }

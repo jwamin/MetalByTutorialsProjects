@@ -8,18 +8,18 @@
 
 import MetalKit
 
-class Model : NSObject{
+class Model : Node{
     
     var vertexBuffer:MTLBuffer!
     var pipelineState:MTLRenderPipelineState!
     let mesh:MTKMesh
     
-    init(objName:String) {
+    init(objName:String,modelExtn:String) {
         
         //buffer allocator
         let allocator = MTKMeshBufferAllocator(device: Renderer.device)
         
-        guard let importmeshFile = Bundle.main.url(forResource: objName, withExtension: "obj") else {
+        guard let importmeshFile = Bundle.main.url(forResource: objName, withExtension: modelExtn) else {
             fatalError()
         }
         
@@ -36,6 +36,7 @@ class Model : NSObject{
         vertexBuffer = mesh.vertexBuffers[0].buffer
         
         pipelineState = Model.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
+        
         super.init()
     }
     

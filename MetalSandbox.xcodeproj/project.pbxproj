@@ -25,7 +25,6 @@
 		3D78010E21C03B750024E261 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78010D21C03B750024E261 /* Model.swift */; };
 		3D78011021C03B830024E261 /* LightingShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D78010F21C03B830024E261 /* LightingShader.metal */; };
 		3D78011121C03B910024E261 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA6DCE921B1872400E1131B /* MathLibrary.swift */; };
-		3D78011221C03BA50024E261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC222BC21AF31D700A50060 /* Main.storyboard */; };
 		3D78011421C03BDE0024E261 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78011321C03BDE0024E261 /* ViewController.swift */; };
 		3D78011521C03BED0024E261 /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
 		3D8FFE3221B70E2E003A081B /* LightingShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FFE3121B70E2E003A081B /* LightingShader.metal */; };
@@ -70,6 +69,9 @@
 		574B19ED21B2190A00C0C54F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 574B19EC21B2190A00C0C54F /* Assets.xcassets */; };
 		574B19F021B2190A00C0C54F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 574B19EE21B2190A00C0C54F /* Main.storyboard */; };
 		574B19F721B2196E00C0C54F /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B19F621B2196E00C0C54F /* SceneView.swift */; };
+		578667C621C097EE006CB17D /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578667C521C097EE006CB17D /* Scene.swift */; };
+		578667C821C09EFA006CB17D /* primative.usd in Resources */ = {isa = PBXBuildFile; fileRef = 578667C721C09EFA006CB17D /* primative.usd */; };
+		578667CB21C0A60B006CB17D /* Main-no-control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578667C921C0A60B006CB17D /* Main-no-control.storyboard */; };
 		57DA0F8B21AF64D300A74ACD /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
 		57DD877021B61A2400D47148 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD876F21B61A2400D47148 /* ViewController.swift */; };
 		57F1E8BD21B41B4800BF9272 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC222B821AF31D600A50060 /* ViewController.swift */; };
@@ -159,6 +161,9 @@
 		574B19F121B2190A00C0C54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		574B19F221B2190A00C0C54F /* ModelIOVoxelSmash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModelIOVoxelSmash.entitlements; sourceTree = "<group>"; };
 		574B19F621B2196E00C0C54F /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
+		578667C521C097EE006CB17D /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		578667C721C09EFA006CB17D /* primative.usd */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = primative.usd; sourceTree = "<group>"; };
+		578667CA21C0A60B006CB17D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "MetalTemplate/Base.lproj/Main-no-control.storyboard"; sourceTree = "<group>"; };
 		57DA0F8A21AF641A00A74ACD /* choo-choo.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = "choo-choo.obj"; sourceTree = "<group>"; };
 		57DD876F21B61A2400D47148 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -264,6 +269,8 @@
 		3D7800FD21C03B3A0024E261 /* Lighting2SceneGraph */ = {
 			isa = PBXGroup;
 			children = (
+				578667C921C0A60B006CB17D /* Main-no-control.storyboard */,
+				578667C521C097EE006CB17D /* Scene.swift */,
 				3D78011321C03BDE0024E261 /* ViewController.swift */,
 				3D78010F21C03B830024E261 /* LightingShader.metal */,
 				3D78010D21C03B750024E261 /* Model.swift */,
@@ -367,6 +374,7 @@
 		3DC222B521AF31D600A50060 /* MetalTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				578667C721C09EFA006CB17D /* primative.usd */,
 				57DA0F8A21AF641A00A74ACD /* choo-choo.obj */,
 				3DC222B621AF31D600A50060 /* AppDelegate.swift */,
 				3DC222B821AF31D600A50060 /* ViewController.swift */,
@@ -676,8 +684,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D78011221C03BA50024E261 /* Main.storyboard in Resources */,
 				3D78011521C03BED0024E261 /* choo-choo.obj in Resources */,
+				578667CB21C0A60B006CB17D /* Main-no-control.storyboard in Resources */,
+				578667C821C09EFA006CB17D /* primative.usd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,6 +775,7 @@
 				3D78010E21C03B750024E261 /* Model.swift in Sources */,
 				3D78010C21C03B690024E261 /* LightingRenderer.swift in Sources */,
 				3D78011021C03B830024E261 /* LightingShader.metal in Sources */,
+				578667C621C097EE006CB17D /* Scene.swift in Sources */,
 				3D78010A21C03B560024E261 /* AppDelegate.swift in Sources */,
 				3D78011121C03B910024E261 /* MathLibrary.swift in Sources */,
 			);
@@ -890,6 +900,14 @@
 				574B19EF21B2190A00C0C54F /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		578667C921C0A60B006CB17D /* Main-no-control.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				578667CA21C0A60B006CB17D /* Base */,
+			);
+			name = "Main-no-control.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
