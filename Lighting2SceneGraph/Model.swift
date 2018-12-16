@@ -36,9 +36,9 @@ class Model : Node{
         vertexBuffer = mesh.vertexBuffers[0].buffer
         
         var fragmentName:String?
-//        if (modelExtn == "usd"){
-//            fragmentName = "secondary";
-//        }
+        //        if (modelExtn == "usd"){
+        //            fragmentName = "secondary";
+        //        }
         
         pipelineState = Model.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor,fragmentFunctionName: fragmentName)
         
@@ -76,6 +76,29 @@ class Model : Node{
             print(error.localizedDescription)
         }
         return pipelineState
+    }
+    
+    public static func render(model:Model,renderEncoder:MTLRenderCommandEncoder, uniforms:inout Uniforms){
+        uniforms.modelMatrix = model.modelMatrix
+        uniforms.normalMatrix = float3x3(normalFrom4x4: model.modelMatrix)
+        
+        renderEncoder.setVertexBytes(&uniforms,
+                                     length: MemoryLayout<Uniforms>.stride, index: 1)
+        
+        renderEncoder.setRenderPipelineState(model.pipelineState)
+        renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: 0)
+        for submesh in model.mesh.submeshes {
+            renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                                indexCount: submesh.indexCount,
+                                                indexType: submesh.indexType,
+                                                indexBuffer: submesh.indexBuffer.buffer,
+                                                indexBufferOffset: submesh.indexBuffer.offset)
+        }
+        for node in model.nodes{
+            if(node is Model){
+                render(model: (node as! Model), renderEncoder: renderEncoder,uniforms: &uniforms)
+            }
+        }
     }
     
 }

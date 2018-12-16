@@ -36,7 +36,7 @@ class Renderer:NSObject{
     var yRotationDegs:Float = 0
     var zScale:Float = 3
     
-    let scene:Scene = Scene()
+    let scene:Scene
 
     lazy var sunlight:Light = {
        var light = buildDefaultLight()
@@ -53,6 +53,8 @@ class Renderer:NSObject{
         return light
     }()
     
+    
+    
     var fragmentUniforms = FragmentUniforms()
     
     init(metalView:MTKView){
@@ -68,14 +70,23 @@ class Renderer:NSObject{
         Renderer.commandQueue = device.makeCommandQueue()!
         Renderer.library = device.makeDefaultLibrary()
 
+        //initialise scene
+        let aspect = Float(metalView.bounds.width) / Float(metalView.bounds.height)
+        var camera = Camera(projectionFov: radians(fromDegrees: projectionFOV), near: 0.1, far: 100, aspect: aspect)
+        scene = Scene(camera: camera)
+        
+        
+        //Get models from external files
         let model2 = Model(objName: "primative",modelExtn: "usd")
-        
         let model = Model(objName: "choo-choo",modelExtn: "obj")
-        scene.nodes.append(model)
-        scene.nodes.append(model2)
         
+        //tweak positioning
         model2.position = float3(0,1,1)
         model2.rotation = [0,radians(fromDegrees: 90.0),radians(fromDegrees: 90.0)]
+        
+        //append to scenegraph
+        scene.nodes.append(model)
+        model.nodes.append(model2)
         
         //finally, call super
         super.init()
@@ -111,9 +122,9 @@ extension Renderer:MTKViewDelegate{
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         let aspect = Float(view.bounds.width) / Float(view.bounds.height)
         
-        let projectionMatrix = float4x4(projectionFov: radians(fromDegrees: projectionFOV), near: 0.1, far: 100, aspect: aspect)
+        scene.camera.projectionMatrix = float4x4(projectionFov: radians(fromDegrees: projectionFOV), near: 0.1, far: 100, aspect: aspect)
         
-        uniforms.projectionMatrix = projectionMatrix
+        uniforms.projectionMatrix = scene.camera.projectionMatrix
     }
     
     
@@ -150,24 +161,12 @@ extension Renderer:MTKViewDelegate{
         for model in scene.nodes as! [Model] {
             // model matrix now comes from the Model's superclass: Node
             model.rotation.y+=0.01
-            uniforms.modelMatrix = model.modelMatrix
-            uniforms.normalMatrix = float3x3(normalFrom4x4: model.modelMatrix)
             
-            renderEncoder.setVertexBytes(&uniforms,
-                                         length: MemoryLayout<Uniforms>.stride, index: 1)
-            
-            renderEncoder.setRenderPipelineState(model.pipelineState)
-            renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: 0)
-            for submesh in model.mesh.submeshes {
-                renderEncoder.drawIndexedPrimitives(type: .triangle,
-                                                    indexCount: submesh.indexCount,
-                                                    indexType: submesh.indexType,
-                                                    indexBuffer: submesh.indexBuffer.buffer,
-                                                    indexBufferOffset: submesh.indexBuffer.offset)
-            }
+            Model.render(model: model, renderEncoder: renderEncoder, uniforms: &uniforms)
         }
         
         renderEncoder.endEncoding()
+        
         guard let drawable = view.currentDrawable else {
             return
         }
