@@ -1353,7 +1353,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 3C42F7N9CQ;
-				INFOPLIST_FILE = ModelIOVoxelSmash/Info.plist;
+				INFOPLIST_FILE = SceneKit/ModelIOVoxelSmash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1373,7 +1373,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 3C42F7N9CQ;
-				INFOPLIST_FILE = ModelIOVoxelSmash/Info.plist;
+				INFOPLIST_FILE = SceneKit/ModelIOVoxelSmash/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

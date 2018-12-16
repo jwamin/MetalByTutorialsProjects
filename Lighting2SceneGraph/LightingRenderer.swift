@@ -34,13 +34,14 @@ class Renderer:NSObject{
     let projectionFOV:Float = 70
     var rotationDegs:Float = 45
     var yRotationDegs:Float = 0
-    var zScale:Float = 0
+    var zScale:Float = 3
     
     let scene:Scene = Scene()
 
     lazy var sunlight:Light = {
        var light = buildDefaultLight()
         light.position = [1,2,-2]
+        light.type = Sunlight
         return light
     }()
     
@@ -68,12 +69,13 @@ class Renderer:NSObject{
         Renderer.library = device.makeDefaultLibrary()
 
         let model2 = Model(objName: "primative",modelExtn: "usd")
-        model2.position = float3(0,1,1)
+        
         let model = Model(objName: "choo-choo",modelExtn: "obj")
         scene.nodes.append(model)
         scene.nodes.append(model2)
         
-    
+        model2.position = float3(0,1,1)
+        model2.rotation = [0,radians(fromDegrees: 90.0),radians(fromDegrees: 90.0)]
         
         //finally, call super
         super.init()
@@ -95,8 +97,10 @@ class Renderer:NSObject{
         
         buildDepthStencilState()
         
+        print(uniforms.viewMatrix)
+        scene.camera.position = [0,0,0.5]
         scene.lights.append(sunlight)
-        scene.lights.append(ambientLight)
+        //scene.lights.append(ambientLight)
         fragmentUniforms.lightCount = UInt32(scene.lights.count)
     }
 }
@@ -124,14 +128,15 @@ extension Renderer:MTKViewDelegate{
         renderEncoder.setDepthStencilState(depthStencilState)
         
         //don't cycle through time, but get mouse input
-        let translation = float4x4(translation: [0, 0.0, zScale])
-        let rotation = float4x4(rotation: [radians(fromDegrees: self.yRotationDegs),radians(fromDegrees: self.rotationDegs),0])
-            
+//        let translation = float4x4(translation: [0, 0.0, zScale])
+//        let rotation = float4x4(rotation: [radians(fromDegrees: self.yRotationDegs),radians(fromDegrees: self.rotationDegs),0])
+        
         //uniforms.modelMatrix = translation * rotation
- 
         
-        
-        uniforms.viewMatrix = float4x4(translation: [0, 0, -3]).inverse * rotation
+        scene.camera.rotation = [radians(fromDegrees: self.yRotationDegs),radians(fromDegrees: self.rotationDegs),0]
+        scene.camera.position = [0, 0.0, zScale]
+        fragmentUniforms.cameraPosition = scene.camera.position
+        uniforms.viewMatrix = scene.camera.modelMatrix
         
         //set normal matrix here
         uniforms.normalMatrix = float3x3(normalFrom4x4: uniforms.modelMatrix)
@@ -144,7 +149,8 @@ extension Renderer:MTKViewDelegate{
         // render all the models in the array
         for model in scene.nodes as! [Model] {
             // model matrix now comes from the Model's superclass: Node
-            uniforms.modelMatrix = model.modelMatrix * translation
+            model.rotation.y+=0.01
+            uniforms.modelMatrix = model.modelMatrix
             uniforms.normalMatrix = float3x3(normalFrom4x4: model.modelMatrix)
             
             renderEncoder.setVertexBytes(&uniforms,

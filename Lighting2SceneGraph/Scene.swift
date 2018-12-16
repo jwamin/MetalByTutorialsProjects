@@ -12,8 +12,10 @@ class Scene : NSObject{
     
     var nodes:[Node] = [Node]()
     var lights:[Light] = [Light]()
-    
+    var camera:Node = Node()
 }
+
+
 
 class Node {
     var name: String = "untitled"

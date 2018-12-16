@@ -37,6 +37,11 @@ vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant U
 }
 
 fragment float4 fragment_main(VertexOut in [[stage_in]], constant Light *lights [[buffer(2)]], constant FragmentUniforms &fragmentUniforms [[buffer(3)]]){
+    
+    float3 specularColor = 0;
+    float materialShininess = 32;
+    float3 materialSpecularColor = float3(1, 1, 1);
+    
     float3 ambientColor = 0; //resulting ambient color is unset before lights arrive
     float3 baseColor = float3(0,0,1); // base lighting color is BLUE
     float3 diffuseColor = 0; //diffuse will be calculated in loop
@@ -47,12 +52,29 @@ fragment float4 fragment_main(VertexOut in [[stage_in]], constant Light *lights 
             float3 lightDirection = normalize(light.position);
             float diffuseIntensity = saturate(dot(lightDirection,normalDirection)); // `dot` product, angle from incoming light and reflection of surface normal
             diffuseColor+=light.color * baseColor * diffuseIntensity;
+            if (diffuseIntensity > 0) {
+                // 1 (R)
+                float3 reflection =
+                reflect(lightDirection, normalDirection);
+                // 2 (V)
+                float3 cameraPosition =
+                normalize(in.worldPosition - fragmentUniforms.cameraPosition);
+                // 3
+                float specularIntensity = pow(saturate(dot(reflection, cameraPosition)), materialShininess);
+                
+                specularColor +=
+                light.specularColor * materialSpecularColor * specularIntensity;
+            }
         } else if (light.type == Ambientlight){
             ambientColor += light.color * light.intensity;
         }
     }
-    float3 color = diffuseColor + ambientColor;
+    float3 color = diffuseColor + ambientColor + specularColor;
     return float4(color,1);
+}
+
+fragment float4 secondary(VertexOut in [[stage_in]]){
+    return float4(1,0,1,0);
 }
 
 //fragment float4 fragment_main(VertexOut in [[stage_in]], constant float4 &color [[buffer(0)]]) {

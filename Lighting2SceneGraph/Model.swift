@@ -35,7 +35,12 @@ class Model : Node{
         self.mesh = mesh
         vertexBuffer = mesh.vertexBuffers[0].buffer
         
-        pipelineState = Model.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
+        var fragmentName:String?
+//        if (modelExtn == "usd"){
+//            fragmentName = "secondary";
+//        }
+        
+        pipelineState = Model.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor,fragmentFunctionName: fragmentName)
         
         super.init()
     }
@@ -54,10 +59,10 @@ class Model : Node{
         
     }()
     
-    private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {
+    private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor,fragmentFunctionName:String?) -> MTLRenderPipelineState {
         let library = Renderer.library
         let vertexFunction = library?.makeFunction(name: "vertex_main")
-        let fragmentFunction = library?.makeFunction(name: "fragment_main")
+        let fragmentFunction = library?.makeFunction(name: fragmentFunctionName ?? "fragment_main")
         var pipelineState:MTLRenderPipelineState! // completely working function below omits the force unwrap, no idea how...
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunction
