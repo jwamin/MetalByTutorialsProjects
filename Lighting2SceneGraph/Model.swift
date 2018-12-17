@@ -79,8 +79,8 @@ class Model : Node{
     }
     
     public static func render(model:Model,renderEncoder:MTLRenderCommandEncoder, uniforms:inout Uniforms){
-        uniforms.modelMatrix = model.modelMatrix
-        uniforms.normalMatrix = float3x3(normalFrom4x4: model.modelMatrix)
+        uniforms.modelMatrix = model.updatedModelMatrix ?? model.modelMatrix
+        uniforms.normalMatrix = float3x3(normalFrom4x4: model.updatedModelMatrix ?? model.modelMatrix)
         
         renderEncoder.setVertexBytes(&uniforms,
                                      length: MemoryLayout<Uniforms>.stride, index: 1)

@@ -86,7 +86,7 @@ class Renderer:NSObject{
         
         //append to scenegraph
         scene.nodes.append(model)
-        model.nodes.append(model2)
+        model.addChild(node: model2)
         
         //finally, call super
         super.init()
@@ -107,8 +107,7 @@ class Renderer:NSObject{
         mtkView(metalView, drawableSizeWillChange: metalView.bounds.size)
         
         buildDepthStencilState()
-        
-        print(uniforms.viewMatrix)
+ 
         scene.camera.position = [0,0,0.5]
         scene.lights.append(sunlight)
         //scene.lights.append(ambientLight)
@@ -161,7 +160,7 @@ extension Renderer:MTKViewDelegate{
         for model in scene.nodes as! [Model] {
             // model matrix now comes from the Model's superclass: Node
             model.rotation.y+=0.01
-            
+            //model.updateMatrices()
             Model.render(model: model, renderEncoder: renderEncoder, uniforms: &uniforms)
         }
         
