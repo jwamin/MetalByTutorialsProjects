@@ -23,15 +23,23 @@ class Scene : NSObject{
 
 
 
-class Node {
+class Node :NSObject {
     var name: String = "untitled"
-    var position: float3 = [0, 0, 0]
+    var position: float3 = [0, 0, 0]{
+        didSet{
+            updateMatrices()
+        }
+    }
     var rotation: float3 = [0, 0, 0]{
         didSet{
             updateMatrices()
         }
     }
-    var scale: float3 = [1, 1, 1]
+    var scale: float3 = [1, 1, 1]{
+        didSet{
+            updateMatrices()
+        }
+    }
     var nodes:[Node] = []
     
     var modelMatrix: float4x4 {
@@ -46,9 +54,11 @@ class Node {
     func updateMatrices(){
         for node in nodes{
             let positionf4 = float4x4(translation: [node.position.x,node.position.y,node.position.z])
-            let multiplied:float4x4 = modelMatrix * positionf4
+            let multiplied:float4x4 = (updatedModelMatrix ?? modelMatrix) * positionf4
             node.updatedModelMatrix = multiplied
+            node.updateMatrices()
         }
+        
     }
     
     func addChild(node:Node){
