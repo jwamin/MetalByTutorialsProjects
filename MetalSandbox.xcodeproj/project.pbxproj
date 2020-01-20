@@ -129,6 +129,7 @@
 		3D8FFE2C21B70DF8003A081B /* Lighting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lighting.entitlements; sourceTree = "<group>"; };
 		3D8FFE3121B70E2E003A081B /* LightingShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = LightingShader.metal; sourceTree = "<group>"; };
 		3D8FFE3321B70E3B003A081B /* LightingRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightingRenderer.swift; sourceTree = "<group>"; };
+		3D9BB9F621C857BA00E63FA0 /* LightingRenderer-tweaked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LightingRenderer-tweaked.swift"; sourceTree = "<group>"; };
 		3D9DE59A21B72341007BC069 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3DA6DCD021B1859800E1131B /* Projection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Projection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA6DCD921B1859900E1131B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -294,6 +295,7 @@
 				3D78010F21C03B830024E261 /* LightingShader.metal */,
 				3D78010D21C03B750024E261 /* Model.swift */,
 				3D78010B21C03B690024E261 /* LightingRenderer.swift */,
+				3D9BB9F621C857BA00E63FA0 /* LightingRenderer-tweaked.swift */,
 				3D78010521C03B3C0024E261 /* Info.plist */,
 				3D78010621C03B3C0024E261 /* Lighting2SceneGraph.entitlements */,
 			);

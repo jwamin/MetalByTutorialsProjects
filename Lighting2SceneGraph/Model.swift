@@ -12,7 +12,22 @@ class Model : Node{
     
     var vertexBuffer:MTLBuffer!
     var pipelineState:MTLRenderPipelineState!
-    let mesh:MTKMesh
+    var mesh:MTKMesh?
+    
+    func copyModel()->Model{
+        let copy = Model()
+        copy.mesh = self.mesh
+        copy.vertexBuffer = self.vertexBuffer
+        copy.pipelineState = self.pipelineState
+        copy.position = self.position
+        copy.rotation = self.rotation
+        copy.scale = self.scale
+        return copy
+    }
+    
+    override init() {
+        super.init()
+    }
     
     init(objName:String,modelExtn:String) {
         
@@ -20,7 +35,7 @@ class Model : Node{
         let allocator = MTKMeshBufferAllocator(device: Renderer.device)
         
         guard let importmeshFile = Bundle.main.url(forResource: objName, withExtension: modelExtn) else {
-            fatalError()
+            fatalError("problem with \(modelExtn) file")
         }
         
         // Get mesh from file, first, create modelIO asset
@@ -29,6 +44,8 @@ class Model : Node{
         //cast to modelIO mesh
         let mdlMesh = asset.object(at: 0) as! MDLMesh
         mdlMesh.addNormals(withAttributeNamed: "normals", creaseThreshold: 10.0)
+        
+  
         
         //cast to metal mesh
         let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
@@ -42,7 +59,7 @@ class Model : Node{
         
         pipelineState = Model.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor,fragmentFunctionName: fragmentName)
         
-        super.init()
+       
     }
     
     static var defaultVertexDescriptor: MDLVertexDescriptor = {
@@ -79,6 +96,11 @@ class Model : Node{
     }
     
     public static func render(model:Model,renderEncoder:MTLRenderCommandEncoder, uniforms:inout Uniforms){
+        
+        guard let mesh = model.mesh else {
+            return
+        }
+        
         uniforms.modelMatrix = model.updatedModelMatrix ?? model.modelMatrix
         uniforms.normalMatrix = float3x3(normalFrom4x4: model.updatedModelMatrix ?? model.modelMatrix)
         
@@ -87,7 +109,7 @@ class Model : Node{
         
         renderEncoder.setRenderPipelineState(model.pipelineState)
         renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: 0)
-        for submesh in model.mesh.submeshes {
+        for submesh in mesh.submeshes {
             renderEncoder.drawIndexedPrimitives(type: .triangle,
                                                 indexCount: submesh.indexCount,
                                                 indexType: submesh.indexType,
