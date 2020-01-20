@@ -69,6 +69,11 @@
 		574B19ED21B2190A00C0C54F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 574B19EC21B2190A00C0C54F /* Assets.xcassets */; };
 		574B19F021B2190A00C0C54F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 574B19EE21B2190A00C0C54F /* Main.storyboard */; };
 		574B19F721B2196E00C0C54F /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B19F621B2196E00C0C54F /* SceneView.swift */; };
+		577E617E23D5191C00A5FB49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577E617D23D5191C00A5FB49 /* AppDelegate.swift */; };
+		577E618023D5191E00A5FB49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 577E617F23D5191E00A5FB49 /* Assets.xcassets */; };
+		577E618323D5191E00A5FB49 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 577E618123D5191E00A5FB49 /* MainMenu.xib */; };
+		577E618A23D51EEA00A5FB49 /* BaseShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 577E618923D51EEA00A5FB49 /* BaseShader.metal */; };
+		577E618B23D5286600A5FB49 /* choo-choo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 57DA0F8A21AF641A00A74ACD /* choo-choo.obj */; };
 		578667C621C097EE006CB17D /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578667C521C097EE006CB17D /* Scene.swift */; };
 		578667C821C09EFA006CB17D /* primative.usd in Resources */ = {isa = PBXBuildFile; fileRef = 578667C721C09EFA006CB17D /* primative.usd */; };
 		578667CB21C0A60B006CB17D /* Main-no-control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578667C921C0A60B006CB17D /* Main-no-control.storyboard */; };
@@ -161,6 +166,13 @@
 		574B19F121B2190A00C0C54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		574B19F221B2190A00C0C54F /* ModelIOVoxelSmash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModelIOVoxelSmash.entitlements; sourceTree = "<group>"; };
 		574B19F621B2196E00C0C54F /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
+		577E617B23D5191C00A5FB49 /* MetalFromTheStartAgain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalFromTheStartAgain.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		577E617D23D5191C00A5FB49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		577E617F23D5191E00A5FB49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		577E618223D5191E00A5FB49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		577E618423D5191E00A5FB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		577E618523D5191E00A5FB49 /* MetalFromTheStartAgain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalFromTheStartAgain.entitlements; sourceTree = "<group>"; };
+		577E618923D51EEA00A5FB49 /* BaseShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BaseShader.metal; sourceTree = "<group>"; };
 		578667C521C097EE006CB17D /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		578667C721C09EFA006CB17D /* primative.usd */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = primative.usd; sourceTree = "<group>"; };
 		578667CA21C0A60B006CB17D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "MetalTemplate/Base.lproj/Main-no-control.storyboard"; sourceTree = "<group>"; };
@@ -233,6 +245,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		574B19E321B2190800C0C54F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577E617823D5191C00A5FB49 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -352,6 +371,7 @@
 				3D7800FD21C03B3A0024E261 /* Lighting2SceneGraph */,
 				3D8FFE1D21B70DA6003A081B /* Model IO */,
 				3D8FFE1C21B70D8A003A081B /* SceneKit */,
+				577E617C23D5191C00A5FB49 /* MetalFromTheStartAgain */,
 				3DC222B421AF31D600A50060 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -369,6 +389,7 @@
 				574B19E621B2190800C0C54F /* ModelIOVoxelSmash.app */,
 				3D8FFE2221B70DF7003A081B /* Lighting.app */,
 				3D7800FC21C03B3A0024E261 /* Lighting2SceneGraph.app */,
+				577E617B23D5191C00A5FB49 /* MetalFromTheStartAgain.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -417,6 +438,19 @@
 				574B19F221B2190A00C0C54F /* ModelIOVoxelSmash.entitlements */,
 			);
 			path = ModelIOVoxelSmash;
+			sourceTree = "<group>";
+		};
+		577E617C23D5191C00A5FB49 /* MetalFromTheStartAgain */ = {
+			isa = PBXGroup;
+			children = (
+				577E617D23D5191C00A5FB49 /* AppDelegate.swift */,
+				577E618923D51EEA00A5FB49 /* BaseShader.metal */,
+				577E617F23D5191E00A5FB49 /* Assets.xcassets */,
+				577E618123D5191E00A5FB49 /* MainMenu.xib */,
+				577E618423D5191E00A5FB49 /* Info.plist */,
+				577E618523D5191E00A5FB49 /* MetalFromTheStartAgain.entitlements */,
+			);
+			path = MetalFromTheStartAgain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -592,13 +626,30 @@
 			productReference = 574B19E621B2190800C0C54F /* ModelIOVoxelSmash.app */;
 			productType = "com.apple.product-type.application";
 		};
+		577E617A23D5191C00A5FB49 /* MetalFromTheStartAgain */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 577E618823D5191E00A5FB49 /* Build configuration list for PBXNativeTarget "MetalFromTheStartAgain" */;
+			buildPhases = (
+				577E617723D5191C00A5FB49 /* Sources */,
+				577E617823D5191C00A5FB49 /* Frameworks */,
+				577E617923D5191C00A5FB49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetalFromTheStartAgain;
+			productName = MetalFromTheStartAgain;
+			productReference = 577E617B23D5191C00A5FB49 /* MetalFromTheStartAgain.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3DC222AB21AF31D600A50060 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Joss Manger";
 				TargetAttributes = {
@@ -632,6 +683,9 @@
 					574B19E521B2190800C0C54F = {
 						CreatedOnToolsVersion = 10.1;
 					};
+					577E617A23D5191C00A5FB49 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 3DC222AE21AF31D600A50060 /* Build configuration list for PBXProject "MetalSandbox" */;
@@ -657,6 +711,7 @@
 				574B19E521B2190800C0C54F /* ModelIOVoxelSmash */,
 				3D8FFE2121B70DF7003A081B /* Lighting */,
 				3D7800FB21C03B3A0024E261 /* Lighting2SceneGraph */,
+				577E617A23D5191C00A5FB49 /* MetalFromTheStartAgain */,
 			);
 		};
 /* End PBXProject section */
@@ -735,6 +790,16 @@
 			files = (
 				574B19ED21B2190A00C0C54F /* Assets.xcassets in Resources */,
 				574B19F021B2190A00C0C54F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577E617923D5191C00A5FB49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577E618B23D5286600A5FB49 /* choo-choo.obj in Resources */,
+				577E618023D5191E00A5FB49 /* Assets.xcassets in Resources */,
+				577E618323D5191E00A5FB49 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +924,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		577E617723D5191C00A5FB49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577E617E23D5191C00A5FB49 /* AppDelegate.swift in Sources */,
+				577E618A23D51EEA00A5FB49 /* BaseShader.metal in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -900,6 +974,14 @@
 				574B19EF21B2190A00C0C54F /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		577E618123D5191E00A5FB49 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				577E618223D5191E00A5FB49 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		578667C921C0A60B006CB17D /* Main-no-control.storyboard */ = {
@@ -1385,6 +1467,48 @@
 			};
 			name = Release;
 		};
+		577E618623D5191E00A5FB49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MetalFromTheStartAgain/MetalFromTheStartAgain.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3C42F7N9CQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = MetalFromTheStartAgain/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = co.jossy.MetalFromTheStartAgain;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		577E618723D5191E00A5FB49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MetalFromTheStartAgain/MetalFromTheStartAgain.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3C42F7N9CQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = MetalFromTheStartAgain/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = co.jossy.MetalFromTheStartAgain;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1483,6 +1607,15 @@
 			buildConfigurations = (
 				574B19F321B2190A00C0C54F /* Debug */,
 				574B19F421B2190A00C0C54F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		577E618823D5191E00A5FB49 /* Build configuration list for PBXNativeTarget "MetalFromTheStartAgain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577E618623D5191E00A5FB49 /* Debug */,
+				577E618723D5191E00A5FB49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
