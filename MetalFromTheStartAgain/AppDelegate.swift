@@ -70,10 +70,6 @@ class Renderer : NSObject, MTKViewDelegate {
     //allocator manages memeory for mesh data
     let allocator = MTKMeshBufferAllocator(device: device)
     
-    //mesh created by modelIO
-//    let mdlmesh = MDLMesh(icosahedronWithExtent: [1,1,1], inwardNormals: false, geometryType: .triangles, allocator: allocator)
-    
-    
     let vertexDescriptor = MTLVertexDescriptor()
     vertexDescriptor.attributes[0].format = .float3
     vertexDescriptor.attributes[0].offset = 0

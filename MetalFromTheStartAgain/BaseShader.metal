@@ -25,11 +25,15 @@ constant float4 blue = {0,0,1,1};
 
 constant float4 colors[] = {red,green,blue};
 
-vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant int *colorIndex [[ buffer(1) ]]) {
+vertex VertexOut vertex_main(const VertexIn vertex_in [[ stage_in ]], constant int *colorIndex [[ buffer(1) ]], uint id [[vertex_id]]) {
   VertexOut out;
 
   out.position = vector_float4(vertex_in.position.xyz,1.0);
   out.color = colors[*colorIndex];//colors[*offset];
+  
+  if (id == 878){
+    out.color = float4(1,0,1,1);
+  }
 
   return out;
 }
